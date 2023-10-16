@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 import 'package:wuju/wuju/view/changmin/changmin_screen.dart';
+import 'package:wuju/wuju/view/sangyong/signup_screen.dart';
 
 void main() {
   runApp(
@@ -50,6 +51,16 @@ class _WujuApp extends StatelessWidget {
                     );
                   },
                   child: Text('진슬')
+              ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MembershipScreen())
+                    );
+                  },
+                  child: Text('상용')
               )
             ],
           ),
