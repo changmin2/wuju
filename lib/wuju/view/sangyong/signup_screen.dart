@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:wuju/common/layout/default_layout.dart';
+import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 
-class MembershipScreen extends StatelessWidget {
-  const MembershipScreen({Key? key}) : super(key: key);
+class SingUpScreen extends StatelessWidget {
+  const SingUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Size ScreenSize = MediaQuery.of(context).size;
+    final Size screenSize = MediaQuery.of(context).size;
 
     return DefaultLayout(
       child: Padding(
@@ -15,7 +16,7 @@ class MembershipScreen extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: ScreenSize.height * 0.5,
+              height: screenSize.height * 0.5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +119,7 @@ class MembershipScreen extends StatelessWidget {
               ),
             ),
             Container(
-              height: ScreenSize.height * 0.2,
+              height: screenSize.height * 0.2,
               child: Column(
                 children: [
                   GestureDetector(
@@ -150,7 +151,12 @@ class MembershipScreen extends StatelessWidget {
                         Icon(Icons.arrow_forward_ios),
                       ],
                     ),
-                    onTap: (){},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen())
+                      );
+                    },
                   ),
                   GestureDetector(
                     child: Row(
@@ -181,13 +187,13 @@ class MembershipScreen extends StatelessWidget {
                         Icon(Icons.arrow_forward_ios),
                       ],
                     ),
-                    onTap: (){},
+                    onTap: () {},
                   ),
                 ],
               ),
             ),
             Container(
-              height: ScreenSize.height * 0.2,
+              height: screenSize.height * 0.2,
               child: GestureDetector(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -204,7 +210,7 @@ class MembershipScreen extends StatelessWidget {
                     Icon(Icons.arrow_forward_ios),
                   ],
                 ),
-                onTap: (){},
+                onTap: () {},
               ),
             )
           ],

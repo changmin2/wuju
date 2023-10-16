@@ -57,7 +57,7 @@ class _WujuApp extends StatelessWidget {
                   onPressed: (){
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MembershipScreen())
+                        MaterialPageRoute(builder: (context) => SingUpScreen())
                     );
                   },
                   child: Text('상용')
