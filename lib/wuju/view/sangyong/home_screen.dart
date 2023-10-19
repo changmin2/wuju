@@ -6,29 +6,29 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final Size screenSize = MediaQuery.of(context).size;
 
     return DefaultLayout(
-      appBar: _renderAppbar(context),
+      appBar: _renderAppbar(),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
-
               // 프로필
-              _renderProfile(context),
+              _renderProfile(),
 
               // 메뉴 버튼
-              _renderMenuButton(context),
+              _renderMenuButton(),
 
               // 오늘의 외계인
               _renderTodayTeacher(screenSize),
+              
+              // 이벤트
+              _renderEvent(),
 
-              // 오늘의 외계인
-              _renderTodayTeacher(screenSize),
-
+              // 오늘의 이야기
+              _renderTodayStory(),
             ],
           ),
         ),
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
 //---------------------------------------------------------
 // 앱바
 //---------------------------------------------------------
-AppBar _renderAppbar(context) {
+AppBar _renderAppbar() {
   return AppBar(
     // 뒤로가기 버튼 없애기
     automaticallyImplyLeading: false,
@@ -70,7 +70,7 @@ AppBar _renderAppbar(context) {
 //---------------------------------------------------------
 // 프로필
 //---------------------------------------------------------
-Container _renderProfile(context) {
+Container _renderProfile() {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 20.0),
     height: 110,
@@ -123,7 +123,7 @@ Container _renderProfile(context) {
 //---------------------------------------------------------
 // 메뉴 버튼
 //---------------------------------------------------------
-Container _renderMenuButton(context) {
+Container _renderMenuButton() {
   return Container(
     padding: EdgeInsets.only(top: 10, bottom: 20),
     child: Container(
@@ -196,10 +196,9 @@ Container _renderMenuButton(context) {
 }
 
 //---------------------------------------------------------
-// 메뉴 버튼
+// 오늘의 외계인
 //---------------------------------------------------------
-Container _renderTodayTeacher(screenSize){
-
+Container _renderTodayTeacher(screenSize) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 20.0),
     child: Column(
@@ -333,6 +332,229 @@ Container _renderTodayTeacher(screenSize){
               ),
             ),
           ],
+        ),
+      ],
+    ),
+  );
+}
+
+//---------------------------------------------------------
+// 이벤트
+//---------------------------------------------------------
+Container _renderEvent(){
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 20.0),
+    child: Container(
+      height: 90.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        color: Color(0xffFFF3D9),
+      ),
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "숨어있는 외계인을 찾아보자!!!",
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "초대할때마다 서비스가 쏟아집니다!!!",
+                style: TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+              SizedBox(
+                width: 60.0,
+                height: 30.0,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xffD3F2FF),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    "확인",
+                    style: TextStyle(
+                      fontSize: 10.0,
+                      color: Color(0xff194BFC),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+//---------------------------------------------------------
+// 오늘의 이야기
+//---------------------------------------------------------
+Container _renderTodayStory(){
+  return Container(
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Text(
+                  "오늘의 ",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                ),
+                Text(
+                  "이야기",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.blue,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  "전체보기",
+                  style: TextStyle(
+                    color: Color(0xff12887A),
+                    fontSize: 14.0,
+                  ),
+                ),
+                Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Color(0xff12887A),
+                  size: 24.0,
+                ),
+              ],
+            ),
+          ],
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 20.0),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 70.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xff12887A),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          padding: EdgeInsets.all(5.0),
+                          child: Text(
+                            "영어 과외",
+                            style: TextStyle(
+                              fontSize: 10.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "매일 매일이 즐거워요!",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.face, size: 10),
+                            SizedBox(width: 5.0,),
+                            Text(
+                              "초보지구인",
+                              style: TextStyle(
+                                fontSize: 10.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 70,
+                      height: 70,
+                      child: Image.asset(
+                        "asset/img/home_profile.png",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
+              SizedBox(
+                height: 70.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xffE9C46A),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          padding: EdgeInsets.all(5.0),
+                          child: Text(
+                            "질문게시판",
+                            style: TextStyle(
+                              fontSize: 10.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "외계인 좀 추천해주세요!!!",
+                          style: TextStyle(
+                            fontSize: 12.0,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.face, size: 10),
+                            SizedBox(width: 5.0,),
+                            Text(
+                              "주니아빠",
+                              style: TextStyle(
+                                fontSize: 10.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 70,
+                      height: 70,
+                      child: Image.asset(
+                        "asset/img/home_profile.png",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     ),
