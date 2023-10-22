@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wuju/wuju/view/seul/seul_screen2.dart';
 
-class SeulScreen extends StatelessWidget {
-  const SeulScreen({Key? key}) : super(key: key);
+class SeulScreen2 extends StatelessWidget {
+  const SeulScreen2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class SeulScreen extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: 250,
-                      child: Text('아이디, 비밀번호,\n닉네임을\n입력해주세요.',
+                      child: Text('학생의 연령/학년을\n선택해 주세요.',
                           textAlign: TextAlign.left,
                           style: TextStyle(fontSize: 30)),
                     ),
@@ -43,7 +42,7 @@ class SeulScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.baseline,
                         textBaseline: TextBaseline.ideographic,
                         children: [
-                          Text('1',
+                          Text('2',
                               style: TextStyle(
                                   fontSize: 50, fontWeight: FontWeight.w700)),
                           Text('/6', style: TextStyle(fontSize: 30)),
@@ -57,27 +56,37 @@ class SeulScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: '아이디(영어로, 4자이상, 10자이내)',
-                              border: OutlineInputBorder()),
-                        ),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 55,
+                          child: OutlinedButton(
+                            onPressed: () {
+                            },
+                            child: Text('사회인',style: TextStyle(color: Colors.black,fontSize: 18),),
+                          )
+                        )
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: '비밀번호(6자 이상)',
-                              border: OutlineInputBorder()),
-                        ),
+                        child: SizedBox(
+                            width: double.infinity,
+                            height: 55,
+                            child: OutlinedButton(
+                              onPressed: () {},
+                              child: Text('대학생',style: TextStyle(color: Colors.black,fontSize: 18),),
+                            )
+                        )
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: '닉네임(한글 가능함, 10자 이하)',
-                              border: OutlineInputBorder()),
-                        ),
+                        child: SizedBox(
+                            width: double.infinity,
+                            height: 55,
+                            child: OutlinedButton(
+                              onPressed: () {},
+                              child: Text('고등학생',style: TextStyle(color: Colors.black,fontSize: 18),),
+                            )
+                          )
                       )
                     ],
                   ),
