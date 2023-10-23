@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 import 'package:wuju/wuju/view/seul/seul_screen2.dart';
 
-class SeulScreen extends StatelessWidget {
-  const SeulScreen({Key? key}) : super(key: key);
+class SeulScreen6 extends StatelessWidget {
+  const SeulScreen6({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class SeulScreen extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: 250,
-                      child: Text('아이디, 비밀번호,\n닉네임을\n입력해주세요.',
+                      child: Text('원하시는 내용을\n적어주세요.',
                           textAlign: TextAlign.left,
                           style: TextStyle(fontSize: 30)),
                     ),
@@ -43,7 +44,7 @@ class SeulScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.baseline,
                         textBaseline: TextBaseline.ideographic,
                         children: [
-                          Text('1',
+                          Text('6',
                               style: TextStyle(
                                   fontSize: 50, fontWeight: FontWeight.w700)),
                           Text('/6', style: TextStyle(fontSize: 30)),
@@ -51,36 +52,18 @@ class SeulScreen extends StatelessWidget {
                   ],
                 ),
                 Expanded(
-                    child: ListView(
-                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: '아이디(영어로, 4자이상, 10자이내)',
-                              border: OutlineInputBorder()),
-                        ),
+                    child:
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 30, 0, 10),
+                      child: TextField(
+                        style: TextStyle(fontSize: 18),
+                        decoration: InputDecoration(
+                            hintText: 'Ex) 서툰 실력을 이해해주시고 일상대화를 나누고 싶습니다.',
+                            border: OutlineInputBorder()),
+                            keyboardType: TextInputType.multiline,
+                            maxLines: 8,
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: '비밀번호(6자 이상)',
-                              border: OutlineInputBorder()),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: '닉네임(한글 가능함, 10자 이하)',
-                              border: OutlineInputBorder()),
-                        ),
-                      )
-                    ],
                 )),
-
               ])),
       bottomNavigationBar: Container(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -91,10 +74,10 @@ class SeulScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SeulScreen2())
+                  MaterialPageRoute(builder: (context) => HomeScreen())
               );
             },
-            child: Text('다음', style: TextStyle(fontSize: 22)),
+            child: Text('완료', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
                     Color(0xff12887A)), shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)))),

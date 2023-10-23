@@ -2,18 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:wuju/wuju/view/seul/seul_screen3.dart';
+import 'package:wuju/wuju/view/seul/seul_screen5.dart';
 
-class SeulScreen2 extends StatefulWidget {
-  const SeulScreen2({super.key});
+class SeulScreen4 extends StatefulWidget {
+  const SeulScreen4({super.key});
 
   @override
-  State<SeulScreen2> createState() => _SeulScreen2State();
+  State<SeulScreen4> createState() => _SeulScreen4State();
 }
 
-class _SeulScreen2State extends State<SeulScreen2> {
-  var buttonClick = [false,false,false];
-  final indexList = [0,1,2];
-  final buttonList = ['사회인','대학생','고등학생'];
+class _SeulScreen4State extends State<SeulScreen4> {
+  var buttonClick = [false,false,false,false,false];
+  final indexList = [0,1,2,3,4];
+  final buttonList = ['영어','일어','독일어','프랑스어','스페인어'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +45,7 @@ class _SeulScreen2State extends State<SeulScreen2> {
                     children: [
                       SizedBox(
                         width: 250,
-                        child: Text('학생의 연령/학년을\n선택해 주세요.',
+                        child: Text('원하시는 외국어를\n선택해 주세요.',
                             textAlign: TextAlign.left,
                             style: TextStyle(fontSize: 30)),
                       ),
@@ -53,7 +54,7 @@ class _SeulScreen2State extends State<SeulScreen2> {
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           textBaseline: TextBaseline.ideographic,
                           children: [
-                            Text('2',
+                            Text('4',
                                 style: TextStyle(
                                     fontSize: 50, fontWeight: FontWeight.w700)),
                             Text('/6', style: TextStyle(fontSize: 30)),
@@ -72,19 +73,17 @@ class _SeulScreen2State extends State<SeulScreen2> {
                                   //버튼클릭시 스타일 변경
                                   style:
                                   buttonClick[e]?
-                                  ButtonStyle(
-                                      alignment: Alignment.centerLeft,backgroundColor: MaterialStateProperty.all<Color>(Color(
+                                  ButtonStyle(alignment: Alignment.centerLeft,backgroundColor: MaterialStateProperty.all<Color>(Color(
                                       0xff589c94)),foregroundColor :MaterialStateProperty.all<Color>(Color(
                                       0xffffffff))) //클릭했을때
-                                      : ButtonStyle(
-                                      alignment: Alignment.centerLeft,backgroundColor: MaterialStateProperty.all<Color>(Color(
+                                      : ButtonStyle(alignment: Alignment.centerLeft,backgroundColor: MaterialStateProperty.all<Color>(Color(
                                       0xffffffff)),foregroundColor :MaterialStateProperty.all<Color>(Color(
                                       0xff000000)),side: MaterialStateProperty.all<BorderSide>(BorderSide(color:Color(
                                       0xffadadad)))), //클릭안했을때
                                   onPressed: () {
                                     setState(() {
                                       //하나의 버튼만 선택가능하도록
-                                      for(int i=0;i<3;i++){
+                                      for(int i=0;i<5;i++){
                                         if(i==e){
                                           buttonClick[e] = !buttonClick[e];
                                         }else{
@@ -95,10 +94,8 @@ class _SeulScreen2State extends State<SeulScreen2> {
                                   },
                                   child: Text(
                                     buttonList[e],
-                                    textAlign: TextAlign.left,
                                     style: TextStyle(fontSize: 18),
-                                  )
-                                  ,
+                                  ),
                                 )))).toList()
                       ,
                     ),
@@ -112,7 +109,7 @@ class _SeulScreen2State extends State<SeulScreen2> {
           child: FilledButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SeulScreen3()));
+                  MaterialPageRoute(builder: (context) => SeulScreen5()));
             },
             child: Text('다음', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(
