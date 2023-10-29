@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/alienSignUpProvider.dart';
 import 'package:wuju/wuju/view/sehun/sehun_screen4.dart';
 
 class SehunScreen3 extends ConsumerStatefulWidget {
@@ -227,9 +228,14 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                   backgroundColor: Color(0xff12887A)
               ),
               onPressed: (){
-                var possible = btnClick.map((e) => e ? langauge[btnClick.indexOf(e)] : null);
-                possible = possible.where((element) => element != null).toList();
-                if(possible.length < 1){
+                List<String> la = [];
+                var po = btnClick.map((e) => e ? langauge[btnClick.indexOf(e)].toString(): null).toList();
+                po = po.where((element) => element != null).toList();
+                po.forEach((element) {
+                  la.add(element!);
+                });
+
+                if(la.length < 1){
                   ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('가능한 언어를 1개 이상 선택하세요!'),
@@ -237,6 +243,7 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                       )
                   );
                 }else {
+                  ref.read(alienProvider.notifier).fourth(la);
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SehunScreen4())

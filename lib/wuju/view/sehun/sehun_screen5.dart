@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 
-class SehunScreen5 extends StatelessWidget {
+import '../provider/alienSignUpProvider.dart';
+
+class SehunScreen5 extends ConsumerWidget {
   const SehunScreen5({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context,WidgetRef ref) {
+    String? intro = '';
+    final _introKey = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -46,13 +51,24 @@ class SehunScreen5 extends StatelessWidget {
             Expanded(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
-                  child: TextField(
-                    style: TextStyle(fontSize: 18),
-                    decoration: InputDecoration(
-                        hintText: 'Ex) 선생님이라 생각하지 말고\n 편하게 대화했으면 좋겠습니다.',
-                        border: OutlineInputBorder()),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: 8,
+                  child: Form(
+                    key: _introKey,
+                    child: TextFormField(
+                      onChanged: (value){
+                        intro = value;
+                      },
+                      validator: (value){
+                        if(value!.length<1){
+                          return "하고싶은 말을 입력해주세요";
+                        }
+                      },
+                      style: TextStyle(fontSize: 18),
+                      decoration: InputDecoration(
+                          hintText: 'Ex) 선생님이라 생각하지 말고\n 편하게 대화했으면 좋겠습니다.',
+                          border: OutlineInputBorder()),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 8,
+                    ),
                   ),
                 ),
             ),
@@ -70,10 +86,13 @@ class SehunScreen5 extends StatelessWidget {
                 backgroundColor: Color(0xff12887A)
             ),
             onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen())
-              );
+              if(_introKey.currentState!.validate()){
+                ref.read(alienProvider.notifier).sixth(intro!);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen())
+                );
+              }
             },
             child: Text(
               '완료',

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final alienProvider = ChangeNotifierProvider<Alien>((ref){
@@ -13,6 +14,11 @@ class Alien extends ChangeNotifier{
   String? si;
   String? gun;
   String? gu;
+  List<String>? possibleLanguage;
+  String? introduce;
+  List<String>? possibleDay;
+  TimeOfDay? startTime;
+  TimeOfDay? endTime;
 
   void first(String name,String password, String nickname){
     this.name = name;
@@ -31,6 +37,20 @@ class Alien extends ChangeNotifier{
     this.gun = gun;
     this.gu = gu;
     notifyListeners();
+  }
+
+  void fourth(List<String> la){
+    this.possibleLanguage = la;
+  }
+
+  void fifth(List<String> day,TimeOfDay start,TimeOfDay end){
+    this.possibleDay = day;
+    this.startTime = start;
+    this.endTime = end;
+  }
+
+  void sixth(String intro){
+    this.introduce = intro;
   }
 
   void init(){

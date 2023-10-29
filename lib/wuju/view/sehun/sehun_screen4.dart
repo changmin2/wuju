@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/alienSignUpProvider.dart';
 import 'package:wuju/wuju/view/sehun/sehun_screen5.dart';
 
-class SehunScreen4 extends StatefulWidget {
+class SehunScreen4 extends ConsumerStatefulWidget {
   const SehunScreen4({super.key});
 
   @override
-  State<SehunScreen4> createState() => _SehunScreen4State();
+  ConsumerState<SehunScreen4> createState() => _SehunScreen4State();
 }
 
-class _SehunScreen4State extends State<SehunScreen4> {
+class _SehunScreen4State extends ConsumerState<SehunScreen4> {
+  var day = ['월','화','수','목','금','토','일'];
   var btnClick = [false, false, false, false, false, false, false];
   TimeOfDay startTime = TimeOfDay(hour: 12, minute: 00);
   bool clickStartTime = false;
@@ -291,10 +294,35 @@ class _SehunScreen4State extends State<SehunScreen4> {
                   backgroundColor: Color(0xff12887A)
               ),
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SehunScreen5())
-                );
+                List<String> poDay = [];
+                var po = btnClick.map((e) => e ? day[btnClick.indexOf(e)].toString(): null).toList();
+                po = po.where((element) => element != null).toList();
+                po.forEach((element) {
+                  poDay.add(element!);
+                });
+
+                if(poDay.length < 1){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('가능한 요일 1개 이상 선택하세요!'),
+                        duration: Duration(seconds: 3),
+                      )
+                  );
+                }else if(!clickStartTime || !clickEndTime){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('시간을 선택하세요!'),
+                        duration: Duration(seconds: 3),
+                      )
+                  );
+                }else{
+                  ref.read(alienProvider.notifier).fifth(poDay,startTime,endTime);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SehunScreen5())
+                  );
+                }
+
               },
               child: Text(
                 '다음',
