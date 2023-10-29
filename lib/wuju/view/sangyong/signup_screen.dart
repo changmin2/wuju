@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
+import 'package:wuju/wuju/view/sehun/sehun_screen.dart';
+
+import '../seul/seul_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   static String get routeName => '/';
@@ -155,7 +158,7 @@ class SignUpScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen())
+                        MaterialPageRoute(builder: (context) => SehunScreen())
                       );
                     },
                   ),
@@ -188,7 +191,12 @@ class SignUpScreen extends StatelessWidget {
                         Icon(Icons.arrow_forward_ios),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SeulScreen())
+                      );
+                    },
                   ),
                 ],
               ),

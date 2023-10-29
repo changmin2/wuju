@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/alienSignUpProvider.dart';
 import 'package:wuju/wuju/view/sehun/sehun_screen1.dart';
 
-class SehunScreen extends StatelessWidget {
-  const SehunScreen({Key? key}) : super(key: key);
+class SehunScreen extends ConsumerStatefulWidget {
+  const SehunScreen({super.key});
+
+  @override
+  ConsumerState<SehunScreen> createState() => _SehunScreenState();
+}
+
+class _SehunScreenState extends ConsumerState<SehunScreen> {
+  String username = '';
+  String password = '';
+  String nickname = '';
+
+  final _usernameKey = GlobalKey<FormState>();
+  final _passwordKey = GlobalKey<FormState>();
+  final _nicknameKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,30 +66,63 @@ class SehunScreen extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                       width: double.infinity,
                       height: 80,
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: '아이디(영어로, 4자이상, 10자이내)',
-                            border: OutlineInputBorder()),
+                      child: Form(
+                        key: _usernameKey,
+                        child: TextFormField(
+                          onChanged: (String value){
+                            username = value;
+                          },
+                          validator: (value){
+                            if(value!.length<1){
+                              return "아이디를 입력해주세요.";
+                            }
+                          },
+                          decoration: InputDecoration(
+                              hintText: '아이디(영어로, 4자이상, 10자이내)',
+                              border: OutlineInputBorder()),
+                        ),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                       width: double.infinity,
                       height: 80,
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: '비밀번호(6자 이상)',
-                            border: OutlineInputBorder()),
+                      child: Form(
+                        key: _passwordKey,
+                        child: TextFormField(
+                          onChanged: (String value){
+                            password = value;
+                          },
+                          validator: (value){
+                            if(value!.length<1){
+                              return "비밀번호를 입력해주세요.";
+                            }
+                          },
+                          decoration: InputDecoration(
+                              hintText: '비밀번호(6자 이상)',
+                              border: OutlineInputBorder()),
+                        ),
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                       width: double.infinity,
                       height: 80,
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: '닉네임(한글 가능함, 10자 이하)',
-                            border: OutlineInputBorder()),
+                      child: Form(
+                        key: _nicknameKey,
+                        child: TextFormField(
+                          onChanged: (String value){
+                            nickname = value;
+                          },
+                          validator: (value){
+                            if(value!.length<1){
+                              return "닉네임을 입력해주세요.";
+                            }
+                          },
+                          decoration: InputDecoration(
+                              hintText: '닉네임(한글 가능함, 10자 이하)',
+                              border: OutlineInputBorder()),
+                        ),
                       ),
                     ),
                   ],
@@ -93,10 +142,14 @@ class SehunScreen extends StatelessWidget {
                 backgroundColor: Color(0xff12887A)
             ),
             onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SehunScreen1())
-              );
+              if(_usernameKey.currentState!.validate() && _passwordKey.currentState!.validate()
+                     && _nicknameKey.currentState!.validate()){
+                ref.read(alienProvider.notifier).first(username,password,nickname);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SehunScreen1())
+                );
+              }
             },
             child: Text(
               '다음',

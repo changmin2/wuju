@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/alienSignUpProvider.dart';
 import 'package:wuju/wuju/view/sehun/sehun_screen2.dart';
-class SehunScreen1 extends StatefulWidget {
+class SehunScreen1 extends ConsumerStatefulWidget {
   const SehunScreen1({super.key});
 
   @override
-  State<SehunScreen1> createState() => _SehunScreen1State();
+  ConsumerState<SehunScreen1> createState() => _SehunScreen1State();
 }
 
-class _SehunScreen1State extends State<SehunScreen1> {
+class _SehunScreen1State extends ConsumerState<SehunScreen1> {
+
   bool btnClick1 = false;
   bool btnClick2 = false;
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(alienProvider);
 
     return Scaffold(
         appBar: AppBar(
