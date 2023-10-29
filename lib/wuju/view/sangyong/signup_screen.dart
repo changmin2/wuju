@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 
-class SingUpScreen extends StatelessWidget {
-  const SingUpScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  static String get routeName => '/';
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

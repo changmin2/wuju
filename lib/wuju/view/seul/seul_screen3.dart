@@ -74,23 +74,25 @@ class _SeulScreen3State extends State<SeulScreen3> {
                                         0xffadadad))),
                                     contentPadding: EdgeInsets.all(5)),
                                 child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                      padding: EdgeInsets.symmetric(horizontal: 10),
-                                      isExpanded: true,
-                                      icon: Icon(Icons.keyboard_arrow_down),
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.black),
-                                      hint: Text('시 / 도'),
-                                      value: si,
-                                      items: _siList.map((v) {
-                                        return DropdownMenuItem(
-                                            value: v, child: Text(v));
-                                      }).toList(),
-                                      onChanged: (v) {
-                                        setState(() {
-                                          si = v;
-                                        });
-                                      }),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 10),
+                                    child: DropdownButton(
+                                        isExpanded: true,
+                                        icon: Icon(Icons.keyboard_arrow_down),
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.black),
+                                        hint: Text('시 / 도'),
+                                        value: si,
+                                        items: _siList.map((v) {
+                                          return DropdownMenuItem(
+                                              value: v, child: Text(v));
+                                        }).toList(),
+                                        onChanged: (v) {
+                                          setState(() {
+                                            si = v;
+                                          });
+                                        }),
+                                  ),
                                 ))),
                         Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -100,23 +102,25 @@ class _SeulScreen3State extends State<SeulScreen3> {
                                         0xffadadad))),
                                     contentPadding: EdgeInsets.all(5)),
                                 child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                      padding: EdgeInsets.symmetric(horizontal: 10),
-                                      isExpanded: true,
-                                      icon: Icon(Icons.keyboard_arrow_down),
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.black),
-                                      hint: Text('시 / 군 / 구'),
-                                      value: gun,
-                                      items: _gunList.map((v) {
-                                        return DropdownMenuItem(
-                                            value: v, child: Text(v));
-                                      }).toList(),
-                                      onChanged: (v) {
-                                        setState(() {
-                                          gun = v;
-                                        });
-                                      }),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 10),
+                                    child: DropdownButton(
+                                        isExpanded: true,
+                                        icon: Icon(Icons.keyboard_arrow_down),
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.black),
+                                        hint: Text('시 / 군 / 구'),
+                                        value: gun,
+                                        items: _gunList.map((v) {
+                                          return DropdownMenuItem(
+                                              value: v, child: Text(v));
+                                        }).toList(),
+                                        onChanged: (v) {
+                                          setState(() {
+                                            gun = v;
+                                          });
+                                        }),
+                                  ),
                                 ))),
                         Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -126,23 +130,25 @@ class _SeulScreen3State extends State<SeulScreen3> {
                                         0xffadadad))),
                                     contentPadding: EdgeInsets.all(5)),
                                 child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                      padding: EdgeInsets.symmetric(horizontal: 10),
-                                      isExpanded: true,
-                                      icon: Icon(Icons.keyboard_arrow_down),
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.black),
-                                      hint: Text('읍 / 동 / 면'),
-                                      value: gu,
-                                      items: _guList.map((v) {
-                                        return DropdownMenuItem(
-                                            value: v, child: Text(v));
-                                      }).toList(),
-                                      onChanged: (v) {
-                                        setState(() {
-                                          gu = v;
-                                        });
-                                      }),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 10),
+                                    child: DropdownButton(
+                                        isExpanded: true,
+                                        icon: Icon(Icons.keyboard_arrow_down),
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.black),
+                                        hint: Text('읍 / 동 / 면'),
+                                        value: gu,
+                                        items: _guList.map((v) {
+                                          return DropdownMenuItem(
+                                              value: v, child: Text(v));
+                                        }).toList(),
+                                        onChanged: (v) {
+                                          setState(() {
+                                            gu = v;
+                                          });
+                                        }),
+                                  ),
                                 ))),
                       ],
                     ),

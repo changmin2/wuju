@@ -63,23 +63,25 @@ class _SehunScreen2State extends State<SehunScreen2> {
                       width: double.infinity,
                       height: 80,
                       decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                      child: DropdownButton(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          isExpanded: true,
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          style: TextStyle(
-                              fontSize: 18, color: Colors.black),
-                          hint: Text('시 / 도'),
-                          value: si,
-                          items: _si.map((v) {
-                            return DropdownMenuItem(
-                                value: v, child: Text(v));
-                          }).toList(),
-                          onChanged: (v) {
-                            setState(() {
-                              si = v;
-                            });
-                          }),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: DropdownButton(
+                            isExpanded: true,
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            style: TextStyle(
+                                fontSize: 18, color: Colors.black),
+                            hint: Text('시 / 도'),
+                            value: si,
+                            items: _si.map((v) {
+                              return DropdownMenuItem(
+                                  value: v, child: Text(v));
+                            }).toList(),
+                            onChanged: (v) {
+                              setState(() {
+                                si = v;
+                              });
+                            }),
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
@@ -87,23 +89,25 @@ class _SehunScreen2State extends State<SehunScreen2> {
                       width: double.infinity,
                       height: 80,
                       decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                      child: DropdownButton(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          isExpanded: true,
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          style: TextStyle(
-                              fontSize: 18, color: Colors.black),
-                          hint: Text('시 / 군 / 구'),
-                          value: gun,
-                          items: _gun.map((v) {
-                            return DropdownMenuItem(
-                                value: v, child: Text(v));
-                          }).toList(),
-                          onChanged: (v) {
-                            setState(() {
-                              gun = v;
-                            });
-                          }),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: DropdownButton(
+                            isExpanded: true,
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            style: TextStyle(
+                                fontSize: 18, color: Colors.black),
+                            hint: Text('시 / 군 / 구'),
+                            value: gun,
+                            items: _gun.map((v) {
+                              return DropdownMenuItem(
+                                  value: v, child: Text(v));
+                            }).toList(),
+                            onChanged: (v) {
+                              setState(() {
+                                gun = v;
+                              });
+                            }),
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
@@ -111,23 +115,26 @@ class _SehunScreen2State extends State<SehunScreen2> {
                       width: double.infinity,
                       height: 80,
                       decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
-                      child: DropdownButton(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          isExpanded: true,
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          style: TextStyle(
-                              fontSize: 18, color: Colors.black),
-                          hint: Text('읍 / 동 / 면'),
-                          value: gu,
-                          items: _gu.map((v) {
-                            return DropdownMenuItem(
-                                value: v, child: Text(v));
-                          }).toList(),
-                          onChanged: (v) {
-                            setState(() {
-                              gu = v;
-                            });
-                          }),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: DropdownButton(
+
+                            isExpanded: true,
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            style: TextStyle(
+                                fontSize: 18, color: Colors.black),
+                            hint: Text('읍 / 동 / 면'),
+                            value: gu,
+                            items: _gu.map((v) {
+                              return DropdownMenuItem(
+                                  value: v, child: Text(v));
+                            }).toList(),
+                            onChanged: (v) {
+                              setState(() {
+                                gu = v;
+                              });
+                            }),
+                      ),
                     ),
                   ],
                 ),

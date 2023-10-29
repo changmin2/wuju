@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 
 class HomeScreen extends StatelessWidget {
+  static String get routeName => 'home';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
