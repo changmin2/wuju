@@ -121,10 +121,21 @@ class _SehunScreen1State extends ConsumerState<SehunScreen1> {
                   backgroundColor: Color(0xff12887A)
               ),
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SehunScreen2())
-                );
+                if(!btnClick1 && !btnClick2) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('성별을 선택하세요!'),
+                        duration: Duration(seconds: 3),
+                      )
+                  );
+                }else{
+                  ref.read(alienProvider.notifier).second(btnClick1 ? "남자" : "여자");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SehunScreen2())
+                  );
+                }
+
               },
               child: Text(
                 '다음',

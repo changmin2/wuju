@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/alienSignUpProvider.dart';
 import 'package:wuju/wuju/view/sehun/sehun_screen3.dart';
 
-class SehunScreen2 extends StatefulWidget {
+class SehunScreen2 extends ConsumerStatefulWidget {
   const SehunScreen2({super.key});
 
   @override
-  State<SehunScreen2> createState() => _SehunScreen2State();
+  ConsumerState<SehunScreen2> createState() => _SehunScreen2State();
 }
 
-class _SehunScreen2State extends State<SehunScreen2> {
+class _SehunScreen2State extends ConsumerState<SehunScreen2> {
   final _si = ['서울', '부산', '대구'];
   final _gun = ['1군', '2군', '3군'];
   final _gu = ['금정구', '동래구', '진구'];
@@ -153,10 +155,21 @@ class _SehunScreen2State extends State<SehunScreen2> {
                   backgroundColor: Color(0xff12887A)
               ),
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SehunScreen3())
-                );
+                if(si==null || gun ==null || gu ==null){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('지역을 모두 선택하세요!'),
+                        duration: Duration(seconds: 3),
+                      )
+                  );
+                }else{
+                  ref.read(alienProvider.notifier).thrid(si, gun, gu);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SehunScreen3())
+                  );
+                }
+
               },
               child: Text(
                 '다음',

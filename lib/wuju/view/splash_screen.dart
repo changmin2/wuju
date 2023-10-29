@@ -11,10 +11,15 @@ class SplashScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context,WidgetRef) {
 
-    return Image.asset(
-                  'asset/img/splash.png',
-                  width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.cover,
-                );
+    return Container(
+      color: Colors.white,
+      child: Center(
+        child: Image.asset(
+                      'asset/img/splash.png',
+                      width: MediaQuery.of(context).size.width,
+                      fit: BoxFit.cover,
+                    ),
+      ),
+    );
   }
 }

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wuju/wuju/view/sehun/sehun_screen4.dart';
 
-class SehunScreen3 extends StatefulWidget {
+class SehunScreen3 extends ConsumerStatefulWidget {
   const SehunScreen3({super.key});
 
   @override
-  State<SehunScreen3> createState() => _SehunScreen3State();
+  ConsumerState<SehunScreen3> createState() => _SehunScreen3State();
 }
 
-class _SehunScreen3State extends State<SehunScreen3> {
+class _SehunScreen3State extends ConsumerState<SehunScreen3> {
+  var langauge = ['영어','일어','독일어','프랑스어','스페인어'];
   var btnClick = [false,false,false,false,false];
   @override
   Widget build(BuildContext context) {
@@ -225,10 +227,21 @@ class _SehunScreen3State extends State<SehunScreen3> {
                   backgroundColor: Color(0xff12887A)
               ),
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SehunScreen4())
-                );
+                var possible = btnClick.map((e) => e ? langauge[btnClick.indexOf(e)] : null);
+                possible = possible.where((element) => element != null).toList();
+                if(possible.length < 1){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('가능한 언어를 1개 이상 선택하세요!'),
+                        duration: Duration(seconds: 3),
+                      )
+                  );
+                }else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SehunScreen4())
+                  );
+                }
               },
               child: Text(
                 '다음',

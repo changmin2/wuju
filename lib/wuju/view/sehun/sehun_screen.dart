@@ -18,7 +18,12 @@ class _SehunScreenState extends ConsumerState<SehunScreen> {
   final _usernameKey = GlobalKey<FormState>();
   final _passwordKey = GlobalKey<FormState>();
   final _nicknameKey = GlobalKey<FormState>();
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ref.read(alienProvider.notifier).init();
+  }
 
   @override
   Widget build(BuildContext context) {
