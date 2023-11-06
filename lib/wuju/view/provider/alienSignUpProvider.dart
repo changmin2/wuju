@@ -17,8 +17,8 @@ class Alien extends ChangeNotifier{
   List<String>? possibleLanguage;
   String? introduce;
   List<String>? possibleDay;
-  TimeOfDay? startTime;
-  TimeOfDay? endTime;
+  String? startTime;
+  String? endTime;
 
   void first(String name,String password, String nickname){
     this.name = name;
@@ -43,7 +43,7 @@ class Alien extends ChangeNotifier{
     this.possibleLanguage = la;
   }
 
-  void fifth(List<String> day,TimeOfDay start,TimeOfDay end){
+  void fifth(List<String> day,String start,String end){
     this.possibleDay = day;
     this.startTime = start;
     this.endTime = end;

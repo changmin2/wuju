@@ -316,7 +316,9 @@ class _SehunScreen4State extends ConsumerState<SehunScreen4> {
                       )
                   );
                 }else{
-                  ref.read(alienProvider.notifier).fifth(poDay,startTime,endTime);
+                  ref.read(alienProvider.notifier).fifth(poDay,startTime.hour.toString().padLeft(2,"0")+
+                      startTime.minute.toString().padLeft(2,"0"),endTime.hour.toString().padLeft(2,"0") +
+                      endTime.minute.toString().padLeft(2,"0"));
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SehunScreen5())

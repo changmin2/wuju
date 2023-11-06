@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
 import 'package:wuju/common/dio/dio.dart';
 import 'package:wuju/user/model/join_request.dart';
+import 'package:wuju/user/model/join_response.dart';
+import 'package:wuju/user/model/user_model.dart';
 
 import '../../common/const/data.dart';
 
@@ -19,7 +21,7 @@ abstract class MemberRepository{
   factory MemberRepository(Dio dio,{String baseUrl}) = _MemberRepository;
   
   @POST('/joinMembership')
-  Future<void> join(
+  Future<JoinResponseModel> join(
     @Body() JoinRequest joinRequest
   );
 }

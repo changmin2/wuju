@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/user/model/join_request.dart';
+import 'package:wuju/user/model/join_response.dart';
+import 'package:wuju/user/repository/member_repository.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 
+import '../../../user/model/user_model.dart';
 import '../provider/alienSignUpProvider.dart';
 
 class SehunScreen5 extends ConsumerWidget {
@@ -85,9 +89,26 @@ class SehunScreen5 extends ConsumerWidget {
                 minimumSize: Size(350, 40),
                 backgroundColor: Color(0xff12887A)
             ),
-            onPressed: (){
+            onPressed: () async {
               if(_introKey.currentState!.validate()){
                 ref.read(alienProvider.notifier).sixth(intro!);
+                var state =ref.read(alienProvider);
+                JoinRequest joinRequest = new JoinRequest(
+                    user_dv: '1',
+                    user_id: state.name!,
+                    passowrd: state.password!,
+                    nick_name: state.nickname!,
+                    sex: state.gender=='남자' ? 'M' : 'F',
+                    address_1: state.si!,
+                    address_2: state.gun!,
+                    address_3: state.gu!,
+                    user_intro: state.introduce!,
+                    start_time: state.startTime!,
+                    end_time: state.endTime!,
+                    skill: state.possibleLanguage!,
+                    week: state.possibleDay!
+                );
+                JoinResponseModel response = await ref.read(memberRepositoryProvider).join(joinRequest);
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => HomeScreen())
