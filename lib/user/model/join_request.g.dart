@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_model.dart';
+part of 'join_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
+JoinRequest _$JoinRequestFromJson(Map<String, dynamic> json) => JoinRequest(
       user_dv: json['user_dv'] as String,
       user_id: json['user_id'] as String,
       passowrd: json['passowrd'] as String,
@@ -22,7 +22,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       week: (json['week'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
+Map<String, dynamic> _$JoinRequestToJson(JoinRequest instance) =>
+    <String, dynamic>{
       'user_dv': instance.user_dv,
       'user_id': instance.user_id,
       'passowrd': instance.passowrd,

@@ -1,21 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'user_model.g.dart';
-
-abstract class UserModelBase{}
-
-class UserModelError extends UserModelBase{
-  final String message;
-
-  UserModelError({
-    required this.message
-  });
-}
-
-class UserModelLoading extends UserModelBase{}
+part 'join_request.g.dart';
 
 @JsonSerializable()
-class UserModel extends UserModelBase{
+class JoinRequest{
   final String user_dv;
   final String user_id;
   final String passowrd;
@@ -30,7 +18,7 @@ class UserModel extends UserModelBase{
   final List<String> skill;
   final List<String> week;
 
-  UserModel({
+  JoinRequest({
     required this.user_dv,
     required this.user_id,
     required this.passowrd,
@@ -46,8 +34,10 @@ class UserModel extends UserModelBase{
     required this.week
   });
 
+  factory JoinRequest.fromJson(Map<String, dynamic> json)
+  => _$JoinRequestFromJson(json);
 
-  factory UserModel.fromJson(Map<String,dynamic> json)
-  => _$UserModelFromJson(json);
+  Map<String, dynamic> toJson()
+  => _$JoinRequestToJson(this);
 
 }
