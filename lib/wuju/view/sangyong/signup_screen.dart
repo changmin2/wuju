@@ -6,7 +6,7 @@ import 'package:wuju/wuju/view/sehun/sehun_screen.dart';
 import '../seul/seul_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
-  static String get routeName => '/';
+  static String get routeName => '/sign';
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override

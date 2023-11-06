@@ -9,8 +9,8 @@ class SplashScreen extends ConsumerWidget {
 
 
   @override
-  Widget build(BuildContext context,WidgetRef) {
-
+  Widget build(BuildContext context,WidgetRef ref) {
+    print('splash진입');
     return Container(
       color: Colors.white,
       child: Center(

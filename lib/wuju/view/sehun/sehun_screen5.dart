@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wuju/user/model/join_request.dart';
 import 'package:wuju/user/model/join_response.dart';
+import 'package:wuju/user/provider/user_me_provider.dart';
 import 'package:wuju/user/repository/member_repository.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 
@@ -109,10 +110,7 @@ class SehunScreen5 extends ConsumerWidget {
                     week: state.possibleDay!
                 );
                 JoinResponseModel response = await ref.read(memberRepositoryProvider).join(joinRequest);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen())
-                );
+                ref.read(userMeProvider.notifier).getMe(response.RESULT_DATA);
               }
             },
             child: Text(
