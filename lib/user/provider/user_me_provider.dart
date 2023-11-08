@@ -14,9 +14,11 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
   }
 
   Future<void> get() async{
+    print("get 함수 진입");
     //spalsh화면을 2초 보여주기 위한 스탑워치
     await Future.delayed(Duration(milliseconds: 1800));
     state = null;
+    print("get 함수 탈출");
     return;
   }
 
