@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/humanSignUpProvider.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 import 'package:wuju/wuju/view/seul/seul_screen2.dart';
 
-class SeulScreen6 extends StatelessWidget {
+class SeulScreen6 extends ConsumerStatefulWidget {
   const SeulScreen6({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<SeulScreen6> createState() => _SeulScreen6State();
+}
+
+class _SeulScreen6State extends ConsumerState<SeulScreen6> {
+  String? intro = '';
+  final _introKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +65,24 @@ class SeulScreen6 extends StatelessWidget {
                     child:
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 30, 0, 10),
-                      child: TextField(
-                        style: TextStyle(fontSize: 18),
-                        decoration: InputDecoration(
-                            hintText: 'Ex) 서툰 실력을 이해해주시고 일상대화를 나누고 싶습니다.',
-                            border: OutlineInputBorder()),
-                            keyboardType: TextInputType.multiline,
-                            maxLines: 8,
+                      child: Form(
+                        key: _introKey,
+                        child: TextFormField(
+                          onChanged: (value){
+                            this.intro = value;
+                          },
+                          validator: (value){
+                            if(value!.length<1){
+                              return "내용을 입력해주세요.";
+                            }
+                          },
+                          style: TextStyle(fontSize: 18),
+                          decoration: InputDecoration(
+                              hintText: 'Ex) 서툰 실력을 이해해주시고 일상대화를 나누고 싶습니다.',
+                              border: OutlineInputBorder()),
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 8,
+                        ),
                       ),
                 )),
               ])),
@@ -72,10 +93,13 @@ class SeulScreen6 extends StatelessWidget {
         height: 80,
           child: FilledButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen())
-              );
+              if(_introKey.currentState!.validate()) {
+                ref.read(humanProvider.notifier).sixth(intro!);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen())
+                );
+              }
             },
             child: Text('완료', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(

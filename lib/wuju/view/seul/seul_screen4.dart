@@ -1,17 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/humanSignUpProvider.dart';
 import 'package:wuju/wuju/view/seul/seul_screen3.dart';
 import 'package:wuju/wuju/view/seul/seul_screen5.dart';
 
-class SeulScreen4 extends StatefulWidget {
+class SeulScreen4 extends ConsumerStatefulWidget {
   const SeulScreen4({super.key});
 
   @override
-  State<SeulScreen4> createState() => _SeulScreen4State();
+  ConsumerState<SeulScreen4> createState() => _SeulScreen4State();
 }
 
-class _SeulScreen4State extends State<SeulScreen4> {
+class _SeulScreen4State extends ConsumerState<SeulScreen4> {
   var buttonClick = [false,false,false,false,false];
   final indexList = [0,1,2,3,4];
   final buttonList = ['영어','일어','독일어','프랑스어','스페인어'];
@@ -108,8 +110,26 @@ class _SeulScreen4State extends State<SeulScreen4> {
           height: 80,
           child: FilledButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SeulScreen5()));
+              List<String> la = [];
+              var po = buttonClick.map((e) => e ? buttonList[buttonClick.indexOf(e)].toString(): null).toList();
+              po = po.where((element) => element != null).toList();
+              po.forEach((element) {
+                la.add(element!);
+              });
+
+              if(la.length < 1){
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('가능한 언어를 1개 이상 선택하세요!'),
+                      duration: Duration(seconds: 3),
+                    )
+                );
+              }else{
+                ref.read(humanProvider.notifier).fourth(la);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SeulScreen5()));
+              }
+
             },
             child: Text('다음', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(

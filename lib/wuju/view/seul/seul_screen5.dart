@@ -1,17 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/humanSignUpProvider.dart';
 import 'package:wuju/wuju/view/seul/seul_screen3.dart';
 import 'package:wuju/wuju/view/seul/seul_screen6.dart';
 
-class SeulScreen5 extends StatefulWidget {
+class SeulScreen5 extends ConsumerStatefulWidget {
   const SeulScreen5({super.key});
 
   @override
-  State<SeulScreen5> createState() => _SeulScreen5State();
+  ConsumerState<SeulScreen5> createState() => _SeulScreen5State();
 }
 
-class _SeulScreen5State extends State<SeulScreen5> {
+class _SeulScreen5State extends ConsumerState<SeulScreen5> {
   var buttonClick = [false, false, false, false, false, false, false];
   final indexList = [0, 1, 2, 3, 4, 5, 6];
   final buttonList = ['월', '화', '수', '목', '금', '토', '일'];
@@ -201,8 +203,37 @@ class _SeulScreen5State extends State<SeulScreen5> {
           height: 80,
           child: FilledButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SeulScreen6()));
+              List<String> poDay = [];
+              var po = buttonClick.map((e) => e ? buttonList[buttonClick.indexOf(e)].toString(): null).toList();
+              po = po.where((element) => element != null).toList();
+              po.forEach((element) {
+                poDay.add(element!);
+              });
+
+              if(poDay.length < 1){
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('가능한 요일 1개 이상 선택하세요!'),
+                      duration: Duration(seconds: 3),
+                    )
+                );
+              }else if(!clickStartTime || !clickEndTime){
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('시간을 선택하세요!'),
+                      duration: Duration(seconds: 3),
+                    )
+                );
+              }else{
+                ref.read(humanProvider.notifier).fifth(poDay,startTime.hour.toString().padLeft(2,"0")+
+                    startTime.minute.toString().padLeft(2,"0"),endTime.hour.toString().padLeft(2,"0") +
+                    endTime.minute.toString().padLeft(2,"0"));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SeulScreen6())
+                );
+              }
+
             },
             child: Text('다음', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(

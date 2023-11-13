@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/humanSignUpProvider.dart';
 import 'package:wuju/wuju/view/seul/seul_screen3.dart';
 import 'package:wuju/wuju/view/seul/seul_screen4.dart';
 
-class SeulScreen3 extends StatefulWidget {
+class SeulScreen3 extends ConsumerStatefulWidget {
   const SeulScreen3({super.key});
 
   @override
-  State<SeulScreen3> createState() => _SeulScreen3State();
+  ConsumerState<SeulScreen3> createState() => _SeulScreen3State();
 }
 
-class _SeulScreen3State extends State<SeulScreen3> {
+class _SeulScreen3State extends ConsumerState<SeulScreen3> {
   final _siList = ['시1', '시2', '시3', '시4', '시5'];
   final _gunList = ['군1', '군2', '군3', '군4', '군5'];
   final _guList = ['구1', '구2', '구3', '구4', '구5'];
@@ -161,8 +163,19 @@ class _SeulScreen3State extends State<SeulScreen3> {
           height: 80,
           child: FilledButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SeulScreen4()));
+              if(si==null || gun ==null || gu ==null){
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('지역을 모두 선택하세요!'),
+                      duration: Duration(seconds: 3),
+                    )
+                );
+              }else{
+                ref.read(humanProvider.notifier).thrid(si, gun, gu);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SeulScreen4()));
+              }
+
             },
             child: Text('다음', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(
