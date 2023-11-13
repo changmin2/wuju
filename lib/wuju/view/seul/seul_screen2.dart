@@ -1,16 +1,18 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/wuju/view/provider/humanSignUpProvider.dart';
 import 'package:wuju/wuju/view/seul/seul_screen3.dart';
 
-class SeulScreen2 extends StatefulWidget {
+class SeulScreen2 extends ConsumerStatefulWidget {
   const SeulScreen2({super.key});
 
   @override
-  State<SeulScreen2> createState() => _SeulScreen2State();
+  ConsumerState<SeulScreen2> createState() => _SeulScreen2State();
 }
 
-class _SeulScreen2State extends State<SeulScreen2> {
+class _SeulScreen2State extends ConsumerState<SeulScreen2> {
   var buttonClick = [false,false,false];
   final indexList = [0,1,2];
   final buttonList = ['사회인','대학생','고등학생'];
@@ -111,8 +113,20 @@ class _SeulScreen2State extends State<SeulScreen2> {
           height: 80,
           child: FilledButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SeulScreen3()));
+              var idx = buttonClick.indexWhere((element) => element == true);
+              if(idx==-1){
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('항목을 선택하세요!'),
+                      duration: Duration(seconds: 3),
+                    )
+                );
+              }else{
+                ref.read(humanProvider.notifier).second(buttonList[idx].toString());
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SeulScreen3()));
+              }
+
             },
             child: Text('다음', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(
