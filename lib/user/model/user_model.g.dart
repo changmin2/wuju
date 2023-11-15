@@ -9,7 +9,6 @@ part of 'user_model.dart';
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       user_dv: json['user_dv'] as String,
       user_id: json['user_id'] as String,
-      passowrd: json['passowrd'] as String,
       nick_name: json['nick_name'] as String,
       sex: json['sex'] as String,
       address_1: json['address_1'] as String,
@@ -18,14 +17,12 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       user_intro: json['user_intro'] as String,
       start_time: json['start_time'] as String,
       end_time: json['end_time'] as String,
-      skill: (json['skill'] as List<dynamic>).map((e) => e as String).toList(),
-      week: (json['week'] as List<dynamic>).map((e) => e as String).toList(),
+      identi: json['identi'] as String,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'user_dv': instance.user_dv,
       'user_id': instance.user_id,
-      'passowrd': instance.passowrd,
       'nick_name': instance.nick_name,
       'sex': instance.sex,
       'address_1': instance.address_1,
@@ -34,6 +31,5 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'user_intro': instance.user_intro,
       'start_time': instance.start_time,
       'end_time': instance.end_time,
-      'skill': instance.skill,
-      'week': instance.week,
+      'identi': instance.identi,
     };

@@ -6,11 +6,13 @@ part 'join_response.g.dart';
 @JsonSerializable()
 class JoinResponseModel{
   final String ERROR_CD;
-  final UserModel RESULT_DATA;
+  final UserModel USER_INFO;
+  String? USER_SESSION;
 
   JoinResponseModel({
      required this.ERROR_CD,
-     required this.RESULT_DATA
+     required this.USER_INFO,
+     this.USER_SESSION = ""
   });
 
   factory JoinResponseModel.fromJson(Map<String,dynamic> json)

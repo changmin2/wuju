@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wuju/user/provider/user_me_provider.dart';
+import 'package:wuju/wuju/view/changmin/login_screen.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 import 'package:wuju/wuju/view/sangyong/signup_screen.dart';
 
@@ -43,6 +44,11 @@ class AuthProviderNotifier extends ChangeNotifier{
         path: '/login',
         name: SignUpScreen.routeName,
         builder: (_,__) => SignUpScreen(),
+    ),
+    GoRoute(
+      path: '/doLogin',
+      name: LoginScreen.routeName,
+      builder: (_,__) => LoginScreen(),
     )
   ];
 
@@ -53,14 +59,17 @@ class AuthProviderNotifier extends ChangeNotifier{
   //로그인 스크린으로 보내줄지
   //홈스크린으로 보내줄지 확인하는 과정이 필요
   FutureOr<String?> redirectLogic(BuildContext context,GoRouterState state)  {
-
     final UserModelBase? user = ref.read(userMeProvider);
-
     //로그인 중
     final logginIn = state.location == '/login';
 
     //회원가입 페이지 이동중인지
     final joinIn = state.location == '/login/join';
+
+
+    if(user is UserModelError){
+      return '/doLogin';
+    }
 
     if(user is UserModelLoading){
       return '/splash';

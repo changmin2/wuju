@@ -110,7 +110,8 @@ class SehunScreen5 extends ConsumerWidget {
                     week: state.possibleDay!
                 );
                 JoinResponseModel response = await ref.read(memberRepositoryProvider).join(joinRequest);
-                ref.read(userMeProvider.notifier).getMe(response.RESULT_DATA);
+                ref.read(userMeProvider.notifier).getMe(response.USER_INFO);
+
               }
             },
             child: Text(

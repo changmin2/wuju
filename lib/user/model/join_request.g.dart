@@ -11,7 +11,6 @@ JoinRequest _$JoinRequestFromJson(Map<String, dynamic> json) => JoinRequest(
       user_id: json['user_id'] as String,
       passowrd: json['passowrd'] as String,
       nick_name: json['nick_name'] as String,
-      sex: json['sex'] as String,
       address_1: json['address_1'] as String,
       address_2: json['address_2'] as String,
       address_3: json['address_3'] as String,
@@ -20,6 +19,8 @@ JoinRequest _$JoinRequestFromJson(Map<String, dynamic> json) => JoinRequest(
       end_time: json['end_time'] as String,
       skill: (json['skill'] as List<dynamic>).map((e) => e as String).toList(),
       week: (json['week'] as List<dynamic>).map((e) => e as String).toList(),
+      sex: json['sex'] as String? ?? "",
+      identity: json['identity'] as String? ?? "",
     );
 
 Map<String, dynamic> _$JoinRequestToJson(JoinRequest instance) =>
@@ -37,4 +38,5 @@ Map<String, dynamic> _$JoinRequestToJson(JoinRequest instance) =>
       'end_time': instance.end_time,
       'skill': instance.skill,
       'week': instance.week,
+      'identity': instance.identity,
     };

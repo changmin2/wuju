@@ -8,7 +8,7 @@ class JoinRequest{
   final String user_id;
   final String passowrd;
   final String nick_name;
-  final String sex;
+  String? sex;
   final String address_1;
   final String address_2;
   final String address_3;
@@ -17,13 +17,13 @@ class JoinRequest{
   final String end_time;
   final List<String> skill;
   final List<String> week;
+  String? identity;
 
   JoinRequest({
     required this.user_dv,
     required this.user_id,
     required this.passowrd,
     required this.nick_name,
-    required this.sex,
     required this.address_1,
     required this.address_2,
     required this.address_3,
@@ -31,7 +31,9 @@ class JoinRequest{
     required this.start_time,
     required this.end_time,
     required this.skill,
-    required this.week
+    required this.week,
+    this.sex = "",
+    this.identity = ""
   });
 
   factory JoinRequest.fromJson(Map<String, dynamic> json)

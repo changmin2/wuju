@@ -4,6 +4,11 @@ import 'package:wuju/wuju/view/provider/humanSignUpProvider.dart';
 import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 import 'package:wuju/wuju/view/seul/seul_screen2.dart';
 
+import '../../../user/model/join_request.dart';
+import '../../../user/model/join_response.dart';
+import '../../../user/provider/user_me_provider.dart';
+import '../../../user/repository/member_repository.dart';
+
 class SeulScreen6 extends ConsumerStatefulWidget {
   const SeulScreen6({Key? key}) : super(key: key);
 
@@ -92,13 +97,27 @@ class _SeulScreen6State extends ConsumerState<SeulScreen6> {
         width: double.infinity,
         height: 80,
           child: FilledButton(
-            onPressed: () {
+            onPressed: () async {
               if(_introKey.currentState!.validate()) {
                 ref.read(humanProvider.notifier).sixth(intro!);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen())
+                var state =ref.read(humanProvider);
+                JoinRequest joinRequest = new JoinRequest(
+                    user_dv: '1',
+                    user_id: state.name!,
+                    passowrd: state.password!,
+                    nick_name: state.nickname!,
+                    address_1: state.si!,
+                    address_2: state.gun!,
+                    address_3: state.gu!,
+                    user_intro: state.introduce!,
+                    start_time: state.startTime!,
+                    end_time: state.endTime!,
+                    skill: state.possibleLanguage!,
+                    week: state.possibleDay!,
+                    identity: state.position!
                 );
+                JoinResponseModel response = await ref.read(memberRepositoryProvider).join(joinRequest);
+                ref.read(userMeProvider.notifier).getMe(response.USER_INFO);
               }
             },
             child: Text('완료', style: TextStyle(fontSize: 22)),
