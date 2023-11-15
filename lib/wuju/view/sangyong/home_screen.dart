@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wuju/common/layout/default_layout.dart';
+import 'package:wuju/user/model/user_model.dart';
+import 'package:wuju/user/provider/user_me_provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   static String get routeName => 'home';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+
+
+  @override
   Widget build(BuildContext context) {
+    final state = ref.read(userMeProvider) as UserModel;
     final Size screenSize = MediaQuery.of(context).size;
 
     return DefaultLayout(
@@ -17,14 +28,14 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               // 프로필
-              _renderProfile(),
+              _renderProfile(state),
 
               // 메뉴 버튼
               _renderMenuButton(),
 
               // 오늘의 외계인
               _renderTodayTeacher(screenSize),
-              
+
               // 이벤트
               _renderEvent(),
 
@@ -71,7 +82,8 @@ AppBar _renderAppbar() {
 //---------------------------------------------------------
 // 프로필
 //---------------------------------------------------------
-Container _renderProfile() {
+Container _renderProfile(UserModel user) {
+  var dv = user.user_dv == '1' ? "외계인" : "지구인";
   return Container(
     padding: EdgeInsets.symmetric(vertical: 20.0),
     height: 110,
@@ -93,7 +105,7 @@ Container _renderProfile() {
                   size: 20,
                 ),
                 Text(
-                  "지구인 유상용 님.",
+                  dv +" "+user.nick_name+" 님.",
                   style: TextStyle(
                     fontSize: 20.0,
                   ),
