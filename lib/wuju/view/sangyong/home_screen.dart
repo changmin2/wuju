@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 import 'package:wuju/user/model/user_model.dart';
 import 'package:wuju/user/provider/user_me_provider.dart';
+import 'package:wuju/user/repository/member_repository.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   static String get routeName => 'home';
@@ -20,31 +21,52 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final state = ref.read(userMeProvider) as UserModel;
     final Size screenSize = MediaQuery.of(context).size;
 
-    return DefaultLayout(
-      appBar: _renderAppbar(),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            children: [
-              // 프로필
-              _renderProfile(state),
+    return FutureBuilder(
+      future: ref.read(memberRepositoryProvider).todayAlien() as Future<Map<String,List<UserModel>>>,
+      builder:(BuildContext context, AsyncSnapshot snapshot){
+        if(snapshot.hasData == false){
+          return DefaultLayout(
+              child: Center(child: CircularProgressIndicator()));
+        }
+        else if (snapshot.hasError) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
 
-              // 메뉴 버튼
-              _renderMenuButton(),
+            child: Text(
+              'Error: ${snapshot.error}', // 에러명을 텍스트에 뿌려줌
+              style: TextStyle(fontSize: 15),
+            ),
+          );
+        }else{
+          List<UserModel> lists = snapshot.data["USER_INFO"];
+          return DefaultLayout(
+            appBar: _renderAppbar(),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  children: [
+                    // 프로필
+                    _renderProfile(state),
 
-              // 오늘의 외계인
-              _renderTodayTeacher(screenSize),
+                    // 메뉴 버튼
+                    _renderMenuButton(),
 
-              // 이벤트
-              _renderEvent(),
+                    // 오늘의 외계인
+                    _renderTodayTeacher(screenSize,lists),
 
-              // 오늘의 이야기
-              _renderTodayStory(),
-            ],
-          ),
-        ),
-      ),
+                    // 이벤트
+                    _renderEvent(),
+
+                    // 오늘의 이야기
+                    _renderTodayStory(),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }
@@ -211,7 +233,9 @@ Container _renderMenuButton() {
 //---------------------------------------------------------
 // 오늘의 외계인
 //---------------------------------------------------------
-Container _renderTodayTeacher(screenSize) {
+Container _renderTodayTeacher(screenSize,List<UserModel> lists) {
+  final first = lists[0] as UserModel;
+  final two = lists[1] as UserModel;
   return Container(
     padding: EdgeInsets.symmetric(vertical: 20.0),
     child: Column(
@@ -279,7 +303,7 @@ Container _renderTodayTeacher(screenSize) {
                   Row(
                     children: [
                       Text(
-                        "영어슨생님",
+                        first.nick_name,
                         style: TextStyle(
                           fontSize: 15.0,
                         ),
@@ -323,7 +347,7 @@ Container _renderTodayTeacher(screenSize) {
                   Row(
                     children: [
                       Text(
-                        "영어슨생님",
+                        two.nick_name,
                         style: TextStyle(
                           fontSize: 15.0,
                         ),

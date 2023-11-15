@@ -24,4 +24,10 @@ abstract class MemberRepository{
   Future<JoinResponseModel> join(
     @Body() JoinRequest joinRequest
   );
+
+  @GET('/todayAlien')
+  Future<Map<String,List<UserModel>>> todayAlien();
+
+  @GET('/todayEarthling')
+  Future<Map<String,List<UserModel>>>todayEarthling();
 }
