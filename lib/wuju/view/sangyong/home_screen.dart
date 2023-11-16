@@ -5,6 +5,7 @@ import 'package:wuju/user/model/user_model.dart';
 import 'package:wuju/user/provider/user_me_provider.dart';
 import 'package:wuju/user/repository/member_repository.dart';
 import 'package:wuju/wuju/view/component/human_card.dart';
+import 'package:wuju/wuju/view/sangyong/search_list_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   static String get routeName => 'home';
@@ -51,7 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     _renderProfile(state),
 
                     // 메뉴 버튼
-                    _renderMenuButton(),
+                    _renderMenuButton(context),
 
                     // 오늘의 외계인
                     _renderTodayTeacher(screenSize,lists,context),
@@ -159,7 +160,7 @@ Container _renderProfile(UserModel user) {
 //---------------------------------------------------------
 // 메뉴 버튼
 //---------------------------------------------------------
-Container _renderMenuButton() {
+Container _renderMenuButton(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(top: 10, bottom: 20),
     child: Container(
@@ -174,19 +175,32 @@ Container _renderMenuButton() {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.search,
-                size: 24,
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text(
-                "외계인찾기",
-                style: TextStyle(
-                  fontSize: 15.0,
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SearchListScreen())
+                  );
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.search,
+                      size: 24,
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      "외계인찾기",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              )
+
             ],
           ),
           Column(
