@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DetailAlien extends StatefulWidget {
+class DetailAlien extends ConsumerStatefulWidget {
   const DetailAlien({super.key});
 
   @override
-  State<DetailAlien> createState() => _DetailAlienState();
+  ConsumerState<DetailAlien> createState() => _DetailAlienState();
 }
 
-class _DetailAlienState extends State<DetailAlien> {
+class _DetailAlienState extends ConsumerState<DetailAlien> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

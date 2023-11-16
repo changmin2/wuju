@@ -4,6 +4,7 @@ import 'package:wuju/common/layout/default_layout.dart';
 import 'package:wuju/user/model/user_model.dart';
 import 'package:wuju/user/provider/user_me_provider.dart';
 import 'package:wuju/user/repository/member_repository.dart';
+import 'package:wuju/wuju/view/component/human_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   static String get routeName => 'home';
@@ -53,7 +54,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     _renderMenuButton(),
 
                     // 오늘의 외계인
-                    _renderTodayTeacher(screenSize,lists),
+                    _renderTodayTeacher(screenSize,lists,context),
 
                     // 이벤트
                     _renderEvent(),
@@ -233,7 +234,7 @@ Container _renderMenuButton() {
 //---------------------------------------------------------
 // 오늘의 외계인
 //---------------------------------------------------------
-Container _renderTodayTeacher(screenSize,List<UserModel> lists) {
+Container _renderTodayTeacher(screenSize,List<UserModel> lists,BuildContext context) {
   final first = lists[0] as UserModel;
   final two = lists[1] as UserModel;
   return Container(
@@ -286,88 +287,12 @@ Container _renderTodayTeacher(screenSize,List<UserModel> lists) {
 
         Row(
           children: [
-            SizedBox(
-              width: (screenSize.width - 40 - 20) / 2,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 140,
-                    child: Image.asset(
-                      "asset/img/home_profile.png",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        first.nick_name,
-                        style: TextStyle(
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("☆ 영어"),
-                      Text("☆ 해운대구 좌동 토익강사"),
-                      Text("☆ 화, 목 저녁 8시 ~ 9시"),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
+            HumanCard(screenSize: screenSize, user: first),
             // 간격
             SizedBox(
               width: 20.0,
             ),
-
-            SizedBox(
-              width: (screenSize.width - 40 - 20) / 2,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 140,
-                    child: Image.asset(
-                      "asset/img/home_profile.png",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        two.nick_name,
-                        style: TextStyle(
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("☆ 영어"),
-                      Text("☆ 해운대구 좌동 토익강사"),
-                      Text("☆ 화, 목 저녁 8시 ~ 9시"),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            HumanCard(screenSize: screenSize, user: two),
           ],
         ),
       ],
