@@ -19,7 +19,7 @@ class HumanCard extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => DetailAlien()));
+            MaterialPageRoute(builder: (context) => DetailAlien(user:user)));
       },
       child: SizedBox(
         width: (screenSize.width - 40 - 20) / 2,
@@ -51,6 +51,7 @@ class HumanCard extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text("☆ "+skills.toString()),
                 Text("☆ "+user.address_1+" "+user.address_2+" "+user.address_3),
