@@ -6,6 +6,7 @@ import 'package:wuju/user/provider/user_me_provider.dart';
 import 'package:wuju/user/repository/member_repository.dart';
 import 'package:wuju/wuju/view/component/human_card.dart';
 import 'package:wuju/wuju/view/sangyong/search_list_screen.dart';
+import 'package:wuju/wuju/view/seul/humanList.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   static String get routeName => 'home';
@@ -22,9 +23,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final state = ref.read(userMeProvider) as UserModel;
     final Size screenSize = MediaQuery.of(context).size;
-
     return FutureBuilder(
-      future: ref.read(memberRepositoryProvider).todayAlien() as Future<Map<String,List<UserModel>>>,
+      future: state.user_dv == "1" ? ref.read(memberRepositoryProvider).todayEarthling() as Future<Map<String,List<UserModel>>>
+      : ref.read(memberRepositoryProvider).todayAlien() as Future<Map<String,List<UserModel>>>,
       builder:(BuildContext context, AsyncSnapshot snapshot){
         if(snapshot.hasData == false){
           return DefaultLayout(
@@ -55,7 +56,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     _renderMenuButton(context),
 
                     // 오늘의 외계인
-                    _renderTodayTeacher(screenSize,lists,context),
+                    _renderTodayTeacher(screenSize,lists,context,state.user_dv),
 
                     // 이벤트
                     _renderEvent(),
@@ -221,23 +222,31 @@ Container _renderMenuButton(BuildContext context) {
               ),
             ],
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.school,
-                size: 24,
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text(
-                "마이페이지",
-                style: TextStyle(
-                  fontSize: 15.0,
+          GestureDetector(
+            onTap: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HumanList())
+              );
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.school,
+                  size: 24,
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 10.0,
+                ),
+                Text(
+                  "마이페이지",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -248,7 +257,7 @@ Container _renderMenuButton(BuildContext context) {
 //---------------------------------------------------------
 // 오늘의 외계인
 //---------------------------------------------------------
-Container _renderTodayTeacher(screenSize,List<UserModel> lists,BuildContext context) {
+Container _renderTodayTeacher(screenSize,List<UserModel> lists,BuildContext context,String user_dv) {
   final first = lists[0] as UserModel;
   final two = lists[1] as UserModel;
   return Container(
@@ -268,7 +277,7 @@ Container _renderTodayTeacher(screenSize,List<UserModel> lists,BuildContext cont
                   ),
                 ),
                 Text(
-                  "외계인",
+                  user_dv == "1" ? "지구인": "외계인",
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.blue,

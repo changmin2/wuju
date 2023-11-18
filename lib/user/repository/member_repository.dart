@@ -2,8 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
 import 'package:wuju/common/dio/dio.dart';
+import 'package:wuju/user/model/confirmMeet_request.dart';
+import 'package:wuju/user/model/inqueryMeet_response.dart';
 import 'package:wuju/user/model/join_request.dart';
 import 'package:wuju/user/model/join_response.dart';
+import 'package:wuju/user/model/requestMeet_request.dart';
+import 'package:wuju/user/model/requestMeet_response.dart';
 import 'package:wuju/user/model/user_model.dart';
 
 import '../../common/const/data.dart';
@@ -30,4 +34,19 @@ abstract class MemberRepository{
 
   @GET('/todayEarthling')
   Future<Map<String,List<UserModel>>>todayEarthling();
+
+  @POST('/requestMeet')
+  Future<RequestMeetResponse>requestMeet(
+    @Body() RequestMeetRequest request
+  );
+  
+  @POST('/inqueryMeet')
+  Future<InqueryMeetResponse> inqueryMeet(
+    @Body() String user_id
+  );
+
+  @POST('/confirmMeet')
+  Future<String> confirmMeet(
+    @Body() ConfirmMeetRequest request
+  );
 }

@@ -4,6 +4,7 @@ part 'join_request.g.dart';
 
 @JsonSerializable()
 class JoinRequest{
+  //1: 외계인, 2: 지구인
   final String user_dv;
   final String user_id;
   final String passowrd;

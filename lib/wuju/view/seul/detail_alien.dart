@@ -2,8 +2,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../user/model/user_model.dart';
+
 class DetailAlien extends ConsumerStatefulWidget {
-  const DetailAlien({super.key});
+  final UserModel user;
+  const DetailAlien({
+    required this.user,
+    super.key});
 
   @override
   ConsumerState<DetailAlien> createState() => _DetailAlienState();
@@ -12,6 +17,8 @@ class DetailAlien extends ConsumerStatefulWidget {
 class _DetailAlienState extends ConsumerState<DetailAlien> {
   @override
   Widget build(BuildContext context) {
+    var skills = widget.user.USER_SKILL.map((e) => e.skill).join(", ") ;
+    var poDays = widget.user.USER_WEEK.map((e) => e.week).join(", ");
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -74,7 +81,7 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                                         height: 10,
                                       ),
                                       Text(
-                                        '브라이언',
+                                        widget.user.nick_name,
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 18),
@@ -118,11 +125,14 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                                         width: 20,
                                         height: 10,
                                       ),
-                                      Text(
-                                        '영어',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18),
+                                      Flexible(
+                                        child: Text(
+                                          skills,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 18),
+                                        ),
                                       ),
                                     ])
                               ])),
@@ -150,7 +160,8 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                               height: 10,
                             ),
                             Text(
-                              '부산시 해운대구',
+                              widget.user.address_1+" "+widget.user.address_2+" "+
+                              widget.user.address_3,
                               style: TextStyle(fontSize: 18),
                             ),
                           ]),
@@ -174,7 +185,9 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                               height: 10,
                             ),
                             Text(
-                              '월수금\n18:00~21:00',
+                              poDays+"\n"
+                                  +widget.user.start_time.substring(0,2)+"시 ~ "
+                                  +widget.user.end_time.substring(0,2)+"시",
                               style: TextStyle(fontSize: 18),
                             ),
                           ]),
@@ -186,7 +199,7 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: 130,
+                              width: double.infinity,
                               child: Text(
                                 '하고 싶은 말',
                                 style: TextStyle(
@@ -198,8 +211,10 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                               height: 10,
                             ),
                             Text(
-                              '해운대에서 토익을 가르치고 있어요!\n기초부터 차근차근 알려드리겠습니다\n부담없이 집에 가는 길에 대화하면서 영어를 접해보세요!!!',
-                              style: TextStyle(fontSize: 18),
+                              widget.user.user_intro,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  ),
                             ),
                           ]),
                     ],
