@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+part 'confirmMeet_request.g.dart';
+
 @JsonSerializable()
 class ConfirmMeetRequest{
   final String path;
