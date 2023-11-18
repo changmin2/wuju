@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
 import 'package:wuju/common/dio/dio.dart';
+import 'package:wuju/user/model/confirmMeet_request.dart';
 import 'package:wuju/user/model/inqueryMeet_response.dart';
 import 'package:wuju/user/model/join_request.dart';
 import 'package:wuju/user/model/join_response.dart';
@@ -36,11 +37,16 @@ abstract class MemberRepository{
 
   @POST('/requestMeet')
   Future<RequestMeetResponse>requestMeet(
-    @Body() RequestMeetRequest
+    @Body() RequestMeetRequest request
   );
   
   @POST('/inqueryMeet')
   Future<InqueryMeetResponse> inqueryMeet(
     @Body() String user_id
+  );
+
+  @POST('/confirmMeet')
+  Future<String> confirmMeet(
+    @Body() ConfirmMeetRequest request
   );
 }
