@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 
+import '../../../user/model/user_model.dart';
 import '../seul/detail_alien.dart';
 
 class SearchListScreen extends StatelessWidget {
@@ -117,8 +118,8 @@ Widget _renderHumanCard(context) {
 
   return GestureDetector(
     onTap: (){
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => DetailAlien()));
+      // Navigator.push(context,
+      //     MaterialPageRoute(builder: (context) => DetailAlien()));
     },
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -11,23 +11,22 @@ class SehunScreen3 extends ConsumerStatefulWidget {
 }
 
 class _SehunScreen3State extends ConsumerState<SehunScreen3> {
-  var langauge = ['영어','일어','독일어','프랑스어','스페인어'];
-  var btnClick = [false,false,false,false,false];
+  var langauge = ['영어', '일어', '독일어', '프랑스어', '스페인어'];
+  var btnClick = [false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
           leading: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
-              }
-          ),
+              }),
         ),
         body: Container(
+          color: Colors.white,
           child: Column(
             children: <Widget>[
               Container(
@@ -50,31 +49,30 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                         ),
                       )
                     ],
-                  )
-              ),
+                  )),
               Expanded(
                 child: ListView(
                   children: [
                     Container(
                         padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         width: double.infinity,
-                        height: 60,
+                        height: 55,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(350, 40),
+                            minimumSize: Size(350, 55),
                             alignment: Alignment.centerLeft,
-                            backgroundColor: btnClick[0]? Color(0xff12887A) : Colors.white,
+                            backgroundColor:
+                                btnClick[0] ? Color(0xff12887A) : Colors.white,
                             side: BorderSide(
                               color: Colors.black,
                             ),
                           ),
-                          onPressed: (){
+                          onPressed: () {
                             setState(() {
-                              for(int i = 0; i < 5; i++){
-                                if(i == 0) {
+                              for (int i = 0; i < 5; i++) {
+                                if (i == 0) {
                                   btnClick[0] = !btnClick[0];
-                                }
-                                else{
+                                } else {
                                   btnClick[i] = false;
                                 }
                               }
@@ -82,31 +80,29 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                           },
                           child: Text(
                             '영어',
-                            style: TextStyle(color: Colors.black,fontSize: 25),
+                            style: TextStyle(color: Colors.black, fontSize: 18),
                           ),
-
-                        )
-                    ),
+                        )),
                     Container(
                         padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         width: double.infinity,
-                        height: 60,
+                        height: 55,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(350, 40),
+                            minimumSize: Size(350, 55),
                             alignment: Alignment.centerLeft,
-                            backgroundColor: btnClick[1]? Color(0xff12887A) : Colors.white,
+                            backgroundColor:
+                                btnClick[1] ? Color(0xff12887A) : Colors.white,
                             side: BorderSide(
                               color: Colors.black,
                             ),
                           ),
-                          onPressed: (){
+                          onPressed: () {
                             setState(() {
-                              for(int i = 0; i < 5; i++){
-                                if(i == 1) {
+                              for (int i = 0; i < 5; i++) {
+                                if (i == 1) {
                                   btnClick[1] = !btnClick[1];
-                                }
-                                else{
+                                } else {
                                   btnClick[i] = false;
                                 }
                               }
@@ -114,30 +110,29 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                           },
                           child: Text(
                             '일어',
-                            style: TextStyle(color: Colors.black,fontSize: 25),
+                            style: TextStyle(color: Colors.black, fontSize: 18),
                           ),
-                        )
-                    ),
+                        )),
                     Container(
                         padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         width: double.infinity,
-                        height: 60,
+                        height: 55,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(350, 40),
+                            minimumSize: Size(350, 55),
                             alignment: Alignment.centerLeft,
-                            backgroundColor: btnClick[2]? Color(0xff12887A) : Colors.white,
+                            backgroundColor:
+                                btnClick[2] ? Color(0xff12887A) : Colors.white,
                             side: BorderSide(
                               color: Colors.black,
                             ),
                           ),
-                          onPressed: (){
+                          onPressed: () {
                             setState(() {
-                              for(int i = 0; i < 5; i++){
-                                if(i == 2) {
+                              for (int i = 0; i < 5; i++) {
+                                if (i == 2) {
                                   btnClick[2] = !btnClick[2];
-                                }
-                                else{
+                                } else {
                                   btnClick[i] = false;
                                 }
                               }
@@ -145,30 +140,29 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                           },
                           child: Text(
                             '독일어',
-                            style: TextStyle(color: Colors.black,fontSize: 25),
+                            style: TextStyle(color: Colors.black, fontSize: 18),
                           ),
-                        )
-                    ),
+                        )),
                     Container(
                         padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         width: double.infinity,
-                        height: 60,
+                        height: 55,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(350, 40),
+                            minimumSize: Size(350, 55),
                             alignment: Alignment.centerLeft,
-                            backgroundColor: btnClick[3]? Color(0xff12887A) : Colors.white,
+                            backgroundColor:
+                                btnClick[3] ? Color(0xff12887A) : Colors.white,
                             side: BorderSide(
                               color: Colors.black,
                             ),
                           ),
-                          onPressed: (){
+                          onPressed: () {
                             setState(() {
-                              for(int i = 0; i < 5; i++){
-                                if(i == 3) {
+                              for (int i = 0; i < 5; i++) {
+                                if (i == 3) {
                                   btnClick[3] = !btnClick[3];
-                                }
-                                else{
+                                } else {
                                   btnClick[i] = false;
                                 }
                               }
@@ -176,30 +170,29 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                           },
                           child: Text(
                             '프랑스어',
-                            style: TextStyle(color: Colors.black,fontSize: 25),
+                            style: TextStyle(color: Colors.black, fontSize: 18),
                           ),
-                        )
-                    ),
+                        )),
                     Container(
                         padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
                         width: double.infinity,
-                        height: 60,
+                        height: 55,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(350, 40),
+                            minimumSize: Size(350, 55),
                             alignment: Alignment.centerLeft,
-                            backgroundColor: btnClick[4]? Color(0xff12887A) : Colors.white,
+                            backgroundColor:
+                                btnClick[4] ? Color(0xff12887A) : Colors.white,
                             side: BorderSide(
                               color: Colors.black,
                             ),
                           ),
-                          onPressed: (){
+                          onPressed: () {
                             setState(() {
-                              for(int i = 0; i < 5; i++){
-                                if(i == 4) {
+                              for (int i = 0; i < 5; i++) {
+                                if (i == 4) {
                                   btnClick[4] = !btnClick[4];
-                                }
-                                else{
+                                } else {
                                   btnClick[i] = false;
                                 }
                               }
@@ -207,10 +200,9 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
                           },
                           child: Text(
                             '스페인어',
-                            style: TextStyle(color: Colors.black,fontSize: 25),
+                            style: TextStyle(color: Colors.black, fontSize: 18),
                           ),
-                        )
-                    ),
+                        )),
                   ],
                 ),
               ),
@@ -218,44 +210,45 @@ class _SehunScreen3State extends ConsumerState<SehunScreen3> {
           ),
         ),
         bottomNavigationBar: Container(
+            color: Colors.white,
             padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
             alignment: Alignment.center,
             width: double.infinity,
-            height: 100,
+            height: 80,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(350, 40),
-                  backgroundColor: Color(0xff12887A)
+                minimumSize: Size(350, 80),
+                backgroundColor: Color(0xff12887A),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
-              onPressed: (){
+              onPressed: () {
                 List<String> la = [];
-                var po = btnClick.map((e) => e ? langauge[btnClick.indexOf(e)].toString(): null).toList();
+                var po = btnClick
+                    .map((e) =>
+                        e ? langauge[btnClick.indexOf(e)].toString() : null)
+                    .toList();
                 po = po.where((element) => element != null).toList();
                 po.forEach((element) {
                   la.add(element!);
                 });
 
-                if(la.length < 1){
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('가능한 언어를 1개 이상 선택하세요!'),
-                        duration: Duration(seconds: 3),
-                      )
-                  );
-                }else {
+                if (la.length < 1) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('가능한 언어를 1개 이상 선택하세요!'),
+                    duration: Duration(seconds: 3),
+                  ));
+                } else {
                   ref.read(alienProvider.notifier).fourth(la);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SehunScreen4())
-                  );
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SehunScreen4()));
                 }
               },
               child: Text(
                 '다음',
-                style: TextStyle(fontSize: 30),
+                style: TextStyle(fontSize: 20),
               ),
-            )
-        )
-    );
+            )));
   }
 }

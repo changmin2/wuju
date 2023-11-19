@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wuju/common/layout/default_layout.dart';
-import 'package:wuju/wuju/view/changmin/changmin_screen.dart';
-import 'package:wuju/wuju/view/sangyong/signup_screen.dart';
 
 import 'common/provider/go_router.dart';
 
@@ -19,7 +17,12 @@ class _App extends ConsumerWidget {
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     final router = ref.watch(routerProvider);
-
+    
+    // 상단바 설정
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // 투명색
+      statusBarIconBrightness: Brightness.dark,
+    ));
 
     // final state = ref.watch(secureStorageProvider);
     // state.deleteAll();
@@ -28,6 +31,9 @@ class _App extends ConsumerWidget {
       routerDelegate: router.routerDelegate,
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
+      theme: ThemeData(
+        fontFamily: 'SeoulNamsan',
+      ),
     );
   }
 }

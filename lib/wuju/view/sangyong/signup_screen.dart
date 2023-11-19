@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 import 'package:wuju/wuju/view/changmin/login_screen.dart';
-import 'package:wuju/wuju/view/sangyong/home_screen.dart';
 import 'package:wuju/wuju/view/sehun/sehun_screen.dart';
 
 import '../seul/seul_screen.dart';
@@ -32,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
                         "우",
                         style: TextStyle(
                           color: Color(0xff12887A),
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           height: 1,
                         ),
                       ),
@@ -46,7 +45,7 @@ class SignUpScreen extends StatelessWidget {
                         "주",
                         style: TextStyle(
                           color: Color(0xff12887A),
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           height: 1,
                         ),
                       ),
@@ -59,19 +58,20 @@ class SignUpScreen extends StatelessWidget {
                       Text(
                         "에서",
                         style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           height: 1,
                         ),
                       ),
                     ],
                   ),
+                  SizedBox(height: 5),
                   Row(
                     children: [
                       Text(
                         "외계인",
                         style: TextStyle(
                           color: Color(0xff12887A),
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           height: 1,
                         ),
                       ),
@@ -85,7 +85,7 @@ class SignUpScreen extends StatelessWidget {
                       Text(
                         "과 ",
                         style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           height: 1,
                         ),
                       ),
@@ -93,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
                         "지구인",
                         style: TextStyle(
                           color: Color(0xff12887A),
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           height: 1,
                         ),
                       ),
@@ -107,16 +107,17 @@ class SignUpScreen extends StatelessWidget {
                       Text(
                         "을",
                         style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           height: 1,
                         ),
                       ),
                     ],
                   ),
+                  SizedBox(height: 5),
                   Text(
                     "만나보세요",
                     style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 32.0,
                       height: 1, //줄간격
                     ),
                   ),
@@ -142,13 +143,13 @@ class SignUpScreen extends StatelessWidget {
                               "외계인",
                               style: TextStyle(
                                 color: Color(0xff7DB249),
-                                fontSize: 32.0,
+                                fontSize: 30.0,
                               ),
                             ),
                             Text(
                               "으로 시작",
                               style: TextStyle(
-                                fontSize: 32.0,
+                                fontSize: 30.0,
                               ),
                             ),
                           ],
@@ -178,13 +179,13 @@ class SignUpScreen extends StatelessWidget {
                               "지구인",
                               style: TextStyle(
                                 color: Color(0xff12887A),
-                                fontSize: 32.0,
+                                fontSize: 30.0,
                               ),
                             ),
                             Text(
                               "으로 시작",
                               style: TextStyle(
-                                fontSize: 32.0,
+                                fontSize: 30.0,
                               ),
                             ),
                           ],

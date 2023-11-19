@@ -90,6 +90,17 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
+  fonts:
+    - family: SeoulNamsan
+      fonts:
+        - asset: asset/font/SeoulNamsanEB.ttf
+          weight: 900
+        - asset: asset/font/SeoulNamsanB.ttf
+          weight: 700
+        - asset: asset/font/SeoulNamsanM.ttf
+          weight: 500
+        - asset: asset/font/SeoulNamsanL.ttf
+          weight: 300
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
