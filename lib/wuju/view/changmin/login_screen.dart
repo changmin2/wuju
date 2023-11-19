@@ -21,15 +21,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 9,
-              child: Column(
+      child: SingleChildScrollView(
+        // physics : 스크롤의 특성을 변경
+        // NeverScrollableScrollPhysics : 스크롤이 되지 않게 함.
+        // BouncingScrollPhysics : 안드로이드 스크롤의 기본 세팅으로 스크롤의 시작과 끝에 도달하면 튕기는 효과를 보여줌.
+        // ClampingScrollPhysics : IOS 스크롤의 기본 세팅으로 스크롤의 끝에서 도달하면 튕기는 효과를 보여줌.
+        physics: ClampingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
                 children: [
                   SizedBox(
                     height: 350,
@@ -72,29 +76,30 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                 ],
               ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 50,
-              margin: EdgeInsets.only(bottom: 16),
-              child: ElevatedButton(
-                onPressed: () async {
-                  if (_idFormKey.currentState!.validate() &&
-                      _psFormKey.currentState!.validate()) {
-                    await ref
-                        .read(userMeProvider.notifier)
-                        .login(username: username, password: password);
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff12887A)),
-                child: Text(
-                  '로그인',
-                  style: TextStyle(fontSize: 20),
+              SizedBox(height: 32),
+              Container(
+                width: double.infinity,
+                height: 50,
+                margin: EdgeInsets.only(bottom: 16),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (_idFormKey.currentState!.validate() &&
+                        _psFormKey.currentState!.validate()) {
+                      await ref
+                          .read(userMeProvider.notifier)
+                          .login(username: username, password: password);
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff12887A)),
+                  child: Text(
+                    '로그인',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
