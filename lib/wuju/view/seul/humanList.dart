@@ -89,7 +89,7 @@ class _HumanListState extends State<HumanList> {
                               comentList[e], //하고싶은말
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: Color(0xff9a9a9a),
                               ),
                             ),
