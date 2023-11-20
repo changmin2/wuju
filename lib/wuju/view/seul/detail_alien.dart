@@ -23,7 +23,11 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Text("외계인 상세정보", style: TextStyle(color: Color(0xff12887A))),
+          title: Text(
+              widget.user.user_dv == "1"
+              ? "외계인 상세정보"
+              : "지구인 상세정보",
+              style: TextStyle(color: Color(0xff12887A))),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(
