@@ -9,7 +9,7 @@ part of 'join_request.dart';
 JoinRequest _$JoinRequestFromJson(Map<String, dynamic> json) => JoinRequest(
       user_dv: json['user_dv'] as String,
       user_id: json['user_id'] as String,
-      passowrd: json['passowrd'] as String,
+      password: json['password'] as String,
       nick_name: json['nick_name'] as String,
       address_1: json['address_1'] as String,
       address_2: json['address_2'] as String,
@@ -27,7 +27,7 @@ Map<String, dynamic> _$JoinRequestToJson(JoinRequest instance) =>
     <String, dynamic>{
       'user_dv': instance.user_dv,
       'user_id': instance.user_id,
-      'passowrd': instance.passowrd,
+      'password': instance.password,
       'nick_name': instance.nick_name,
       'sex': instance.sex,
       'address_1': instance.address_1,

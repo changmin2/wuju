@@ -100,7 +100,7 @@ class SehunScreen5 extends ConsumerWidget {
                   JoinRequest joinRequest = new JoinRequest(
                       user_dv: '1',
                       user_id: state.name!,
-                      passowrd: state.password!,
+                      password: state.password!,
                       nick_name: state.nickname!,
                       sex: state.gender == '남자' ? 'M' : 'F',
                       address_1: state.si!,

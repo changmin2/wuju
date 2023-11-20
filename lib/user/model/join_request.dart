@@ -7,7 +7,7 @@ class JoinRequest{
   //1: 외계인, 2: 지구인
   final String user_dv;
   final String user_id;
-  final String passowrd;
+  final String password;
   final String nick_name;
   String? sex;
   final String address_1;
@@ -23,7 +23,7 @@ class JoinRequest{
   JoinRequest({
     required this.user_dv,
     required this.user_id,
-    required this.passowrd,
+    required this.password,
     required this.nick_name,
     required this.address_1,
     required this.address_2,

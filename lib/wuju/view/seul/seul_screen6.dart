@@ -104,7 +104,7 @@ class _SeulScreen6State extends ConsumerState<SeulScreen6> {
                 JoinRequest joinRequest = new JoinRequest(
                     user_dv: '2',
                     user_id: state.name!,
-                    passowrd: state.password!,
+                    password: state.password!,
                     nick_name: state.nickname!,
                     address_1: state.si!,
                     address_2: state.gun!,
