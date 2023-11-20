@@ -177,6 +177,8 @@ Container _renderMenuButton(BuildContext context,UserModel user) {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
+                // 컬럼을 클릭했을때 비어있는 영역도 터치가 가능하게.
+                behavior: HitTestBehavior.translucent,	// 추가
                 onTap: (){
                   Navigator.push(
                       context,
@@ -225,6 +227,7 @@ Container _renderMenuButton(BuildContext context,UserModel user) {
             ],
           ),
           GestureDetector(
+            behavior: HitTestBehavior.translucent,	// 추가
             onTap: (){
               Navigator.push(
                   context,
