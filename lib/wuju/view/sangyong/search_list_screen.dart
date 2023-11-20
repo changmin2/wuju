@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wuju/common/layout/default_layout.dart';
 import 'package:wuju/user/model/humanListRequest.dart';
 import 'package:wuju/user/provider/address_provider.dart';
+import 'package:wuju/user/provider/user_me_provider.dart';
 import 'package:wuju/user/repository/member_repository.dart';
 import 'package:wuju/wuju/view/component/human_card.dart';
 
@@ -4089,13 +4090,13 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
     ref.read(addressNotiferProvider).clear();
   }
 
-  Future<dynamic> _future(bool exist,String ad1,String ad2,String ad3) async {
+  Future<dynamic> _future(bool exist,String ad1,String ad2,String ad3,String user_dv) async {
     if(exist){
       HumanListRequest humanListRequest = HumanListRequest(
           address_1: ad1,
           address_2: ad2,
           address_3: ad3,
-          user_dv: "1"
+          user_dv: user_dv=="1" ? "2" : "1"
       );
 
       var lists = await  ref.read(memberRepositoryProvider).findPerseon(
@@ -4109,10 +4110,11 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.read(userMeProvider) as UserModel;
     final state = ref.read(addressNotiferProvider);
     var exist = state.check();
     return FutureBuilder(
-      future: _future(exist,state.address_1,state.address_2,state.address_3),
+      future: _future(exist,state.address_1,state.address_2,state.address_3,user.user_dv),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if(snapshot.hasData == false){
           return DefaultLayout(
@@ -4132,7 +4134,9 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-                '외계인 찾기',
+                user.user_dv == "1"
+                ? "지구인 찾기"
+                : '외계인 찾기',
                 style: TextStyle(
                 color: Color(0xff12887A),
               ),

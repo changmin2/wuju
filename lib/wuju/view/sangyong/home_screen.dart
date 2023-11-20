@@ -53,7 +53,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     _renderProfile(state),
 
                     // 메뉴 버튼
-                    _renderMenuButton(context),
+                    _renderMenuButton(context,state),
 
                     // 오늘의 외계인
                     _renderTodayTeacher(screenSize,lists,context,state.user_dv),
@@ -161,7 +161,7 @@ Container _renderProfile(UserModel user) {
 //---------------------------------------------------------
 // 메뉴 버튼
 //---------------------------------------------------------
-Container _renderMenuButton(BuildContext context) {
+Container _renderMenuButton(BuildContext context,UserModel user) {
   return Container(
     padding: EdgeInsets.only(top: 10, bottom: 20),
     child: Container(
@@ -193,7 +193,9 @@ Container _renderMenuButton(BuildContext context) {
                       height: 10.0,
                     ),
                     Text(
-                      "외계인찾기",
+                      user.user_dv == "1"
+                      ?"지구인찾기"
+                      :"외계인찾기",
                       style: TextStyle(
                         fontSize: 15.0,
                       ),
