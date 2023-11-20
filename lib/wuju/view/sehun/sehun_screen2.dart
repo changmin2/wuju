@@ -4139,6 +4139,10 @@ class _SehunScreen2State extends ConsumerState<SehunScreen2> {
                                     value: v, child: Text(v));
                               }).toList(),
                               onChanged: (v) {
+                                _gun = [];
+                                _gu = [];
+                                gun = null;
+                                gu = null;
                                 _gun = sigungu[v]!.keys.toList();
                                 setState(() {
                                   si = v;
@@ -4169,6 +4173,8 @@ class _SehunScreen2State extends ConsumerState<SehunScreen2> {
                                 );
                               }).toList(),
                               onChanged: (v) {
+                                _gu = [];
+                                gu = null;
                                 _gu = sigungu[si]![v]!.toList();
                                 setState(() {
                                   gun = v;
