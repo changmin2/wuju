@@ -4086,7 +4086,13 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    var user = ref.read(userMeProvider) as UserModel;
     _si = sigungu.keys.toList();
+    _gun = sigungu[user.address_1]!.keys.toList();
+    si = user.address_1;
+    gun = user.address_2;
+    _gu = sigungu[si]![user.address_2]!.toList();
+    gu = user.address_3;
     ref.read(addressNotiferProvider).clear();
   }
 
@@ -4171,7 +4177,9 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(
-                '외계인 찾기',
+                user.user_dv == "1"
+                ? '지구인 찾기'
+                : '외계인 찾기',
                 style: TextStyle(
                   color: Color(0xff12887A),
                 ),
@@ -4248,6 +4256,7 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
                 }).toList(),
                 onChanged: (v) {
                   _gu = [];
+                  gu = null;
                   _gu = sigungu[si]![v]!.toList();
                   setState(() {
                     ref.read(addressNotiferProvider.notifier).second(v.toString());
