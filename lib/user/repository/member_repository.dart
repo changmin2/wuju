@@ -11,6 +11,7 @@ import 'package:wuju/user/model/requestMeet_response.dart';
 import 'package:wuju/user/model/user_model.dart';
 
 import '../../common/const/data.dart';
+import '../model/humanListRequest.dart';
 
 part 'member_repository.g.dart';
 
@@ -34,6 +35,11 @@ abstract class MemberRepository{
 
   @GET('/todayEarthling')
   Future<Map<String,List<UserModel>>>todayEarthling();
+
+  @POST('/findPerseon')
+  Future<Map<String,List<UserModel>>>findPerseon(
+    @Body() HumanListRequest humanListRequest
+  );
 
   @POST('/requestMeet')
   Future<RequestMeetResponse>requestMeet(
