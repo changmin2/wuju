@@ -22,6 +22,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.read(userMeProvider) as UserModel;
+    print(state.user_dv);
+    print(state.user_id);
     final Size screenSize = MediaQuery.of(context).size;
     return FutureBuilder(
       future: state.user_dv == "1" ? ref.read(memberRepositoryProvider).todayEarthling() as Future<Map<String,List<UserModel>>>

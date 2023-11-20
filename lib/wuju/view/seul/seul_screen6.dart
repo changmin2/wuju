@@ -102,7 +102,7 @@ class _SeulScreen6State extends ConsumerState<SeulScreen6> {
                 ref.read(humanProvider.notifier).sixth(intro!);
                 var state =ref.read(humanProvider);
                 JoinRequest joinRequest = new JoinRequest(
-                    user_dv: '1',
+                    user_dv: '2',
                     user_id: state.name!,
                     passowrd: state.password!,
                     nick_name: state.nickname!,
