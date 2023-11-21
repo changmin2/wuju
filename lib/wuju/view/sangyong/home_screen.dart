@@ -8,6 +8,8 @@ import 'package:wuju/wuju/view/component/human_card.dart';
 import 'package:wuju/wuju/view/sangyong/search_list_screen.dart';
 import 'package:wuju/wuju/view/seul/humanList.dart';
 
+import '../../../user/model/user_modelV2.dart';
+
 class HomeScreen extends ConsumerStatefulWidget {
   static String get routeName => 'home';
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +19,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-
 
   @override
   Widget build(BuildContext context) {

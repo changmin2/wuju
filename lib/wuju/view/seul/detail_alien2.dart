@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:wuju/user/model/user_modelV2.dart';
 
 class DetailAlien2 extends StatefulWidget {
-  const DetailAlien2({super.key});
+  final UserModelV2 user;
+  const DetailAlien2({
+    required this.user,
+    super.key});
 
   @override
   State<DetailAlien2> createState() => _DetailAlien2State();
@@ -11,6 +15,7 @@ class _DetailAlien2State extends State<DetailAlien2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
@@ -34,6 +39,32 @@ class _DetailAlien2State extends State<DetailAlien2> {
       ),
       body: Column(
         children: [
+=======
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          title: Text(
+              widget.user.user_dv == "1"
+              ? "외계인 상세정보"
+              : "지구인 상세정보",
+              style: TextStyle(color: Color(0xff12887A))),
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              //뒤로가기
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+
+            children: [
+>>>>>>> 95ef36f (wantMeetList:)
           Container(
             color: Colors.white,
             width: double.infinity,
@@ -45,6 +76,7 @@ class _DetailAlien2State extends State<DetailAlien2> {
                   fit: BoxFit.fill,
                   width: 120,
                   height: 120,
+<<<<<<< HEAD
                 ),
                 SizedBox(width: 30),
                 SizedBox(
@@ -128,6 +160,11 @@ class _DetailAlien2State extends State<DetailAlien2> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+=======
+                  child: Column(children: [
+                    Row(
+                        children: [
+>>>>>>> 95ef36f (wantMeetList:)
                       SizedBox(
                         width: 130,
                         child: Text(
@@ -138,11 +175,168 @@ class _DetailAlien2State extends State<DetailAlien2> {
                           ),
                         ),
                       ),
+<<<<<<< HEAD
                       SizedBox(width: 20),
                       Text(
                         '부산시 해운대구',
                         style: TextStyle(fontSize: 14),
                       ),
+=======
+                      SizedBox(width: 30, height: 100),
+                      SizedBox(
+                          width: 170,
+                          height: 100,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                //이름
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '이름',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Color(0xff12887A)),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        widget.user.nick_name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 18),
+                                      ),
+                                    ]),
+                                //성별
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '성별',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Color(0xff12887A)),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        '남',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 18),
+                                      ),
+                                      Icon(Icons.male,
+                                          color: Colors
+                                              .blue) //Icon(Icons.female,color: Colors.red)
+                                    ]),
+                                //언어
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '언어',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Color(0xff12887A)),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        '영어',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 18),
+                                      ),
+                                    ])
+                              ])),
+                    ]),
+                  ]))),
+          Expanded(
+              child: Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 130,
+                              child: Text(
+                                '만남가능지역',
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xff12887A)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                              height: 10,
+                            ),
+                            Text(
+                              '부산시 해운대구',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ]),
+                      SizedBox(
+                        width: 20,
+                        height: 20,
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 130,
+                              child: Text(
+                                '가능한 요일/시간',
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xff12887A)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                              height: 10,
+                            ),
+                            Text(
+                              '월수금\n18:00~21:00',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ]),
+                      SizedBox(
+                        width: 20,
+                        height: 20,
+                      ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 130,
+                              child: Text(
+                                '하고 싶은 말',
+                                style: TextStyle(
+                                    fontSize: 18, color: Color(0xff12887A)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                              height: 10,
+                            ),
+                            Text(
+                              widget.user.user_intro,
+                              style: TextStyle(fontSize: 18),
+
+                            ),
+                          ]),
+>>>>>>> 95ef36f (wantMeetList:)
                     ],
                   ),
                   SizedBox(height: 20),
@@ -207,8 +401,16 @@ class _DetailAlien2State extends State<DetailAlien2> {
             SizedBox(
               width: 150,
               height: 40,
+<<<<<<< HEAD
               child: FilledButton(
                 onPressed: () {},
+=======
+              child:  FilledButton(
+                onPressed: () {
+
+                },
+                child: Text('수락', style: TextStyle(fontSize: 22)),
+>>>>>>> 95ef36f (wantMeetList:)
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                     Color(0xff12887A),

@@ -1,6 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/user/model/requestMeet_request.dart';
+import 'package:wuju/user/model/requestMeet_response.dart';
+import 'package:wuju/user/provider/user_me_provider.dart';
+import 'package:wuju/user/repository/member_repository.dart';
 
 import '../../../user/model/user_model.dart';
 
@@ -13,9 +17,15 @@ class DetailAlien extends ConsumerStatefulWidget {
 }
 
 class _DetailAlienState extends ConsumerState<DetailAlien> {
+
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     var skills = widget.user.USER_SKILL.map((e) => e.skill).join(", ");
+=======
+    final loginUser = ref.read(userMeProvider) as UserModel;
+    var skills = widget.user.USER_SKILL.map((e) => e.skill).join(", ") ;
+>>>>>>> 95ef36f (wantMeetList:)
     var poDays = widget.user.USER_WEEK.map((e) => e.week).join(", ");
     return Scaffold(
       appBar: AppBar(
@@ -163,6 +173,7 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                         style: TextStyle(fontSize: 14),
                       ),
                     ],
+<<<<<<< HEAD
                   ),
                   SizedBox(height: 20),
                   Row(
@@ -216,6 +227,38 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                 ],
               ),
             ),
+=======
+                  )))
+        ]),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+          color: Colors.white,
+          width: double.infinity,
+          height: 80,
+          child: FilledButton(
+            onPressed: () async {
+              RequestMeetRequest request = RequestMeetRequest(
+                  path: loginUser.user_dv == "1"
+                  ? "A2E"
+                  : "E2A",
+                  earthling_id: loginUser.user_dv == "1"
+                                ? widget.user.user_id
+                                : loginUser.user_id,
+                  alien_id: loginUser.user_dv == "1"
+                            ? loginUser.user_id
+                            : widget.user.user_id
+              );
+              RequestMeetResponse response = await ref.read(memberRepositoryProvider).requestMeet(request);
+              print(response.ERROR_MSG);
+            },
+            child: Text('신청하기', style: TextStyle(fontSize: 22)),
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xff12887A)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)))),
+>>>>>>> 95ef36f (wantMeetList:)
           ),
         ],
       ),
