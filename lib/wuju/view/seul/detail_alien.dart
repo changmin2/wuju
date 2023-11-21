@@ -22,7 +22,7 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
 
   @override
   Widget build(BuildContext context) {
-    print("temp");
+    print("temp111222");
     final loginUser = ref.read(userMeProvider) as UserModel;
     var skills = widget.user.USER_SKILL.map((e) => e.skill).join(", ") ;
     var poDays = widget.user.USER_WEEK.map((e) => e.week).join(", ");
