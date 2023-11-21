@@ -1,8 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:wuju/user/model/user_modelV2.dart';
 
 class DetailAlien2 extends StatefulWidget {
-  const DetailAlien2({super.key});
+  final UserModelV2 user;
+  const DetailAlien2({
+    required this.user,
+    super.key});
 
   @override
   State<DetailAlien2> createState() => _DetailAlien2State();
@@ -15,7 +19,11 @@ class _DetailAlien2State extends State<DetailAlien2> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: Text("외계인 상세정보", style: TextStyle(color: Color(0xff12887A))),
+          title: Text(
+              widget.user.user_dv == "1"
+              ? "외계인 상세정보"
+              : "지구인 상세정보",
+              style: TextStyle(color: Color(0xff12887A))),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(
@@ -28,7 +36,10 @@ class _DetailAlien2State extends State<DetailAlien2> {
             },
           ),
         ),
-        body: Column(children: [
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+
+            children: [
           Container(
               color: Colors.white,
               width: double.infinity,
@@ -38,7 +49,8 @@ class _DetailAlien2State extends State<DetailAlien2> {
                   width: 120,
                   height: 120,
                   child: Column(children: [
-                    Row(children: [
+                    Row(
+                        children: [
                       SizedBox(
                         width: 120,
                         height: 120,
@@ -73,7 +85,7 @@ class _DetailAlien2State extends State<DetailAlien2> {
                                         height: 10,
                                       ),
                                       Text(
-                                        '브라이언',
+                                        widget.user.nick_name,
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 18),
@@ -132,6 +144,8 @@ class _DetailAlien2State extends State<DetailAlien2> {
                   color: Colors.white,
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -197,8 +211,9 @@ class _DetailAlien2State extends State<DetailAlien2> {
                               height: 10,
                             ),
                             Text(
-                              '해운대에서 토익을 가르치고 있어요!\n기초부터 차근차근 알려드리겠습니다\n부담없이 집에 가는 길에 대화하면서 영어를 접해보세요!!!',
+                              widget.user.user_intro,
                               style: TextStyle(fontSize: 18),
+
                             ),
                           ]),
                     ],
@@ -215,7 +230,9 @@ class _DetailAlien2State extends State<DetailAlien2> {
               width: 150,
               height: 40,
               child:  FilledButton(
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 child: Text('수락', style: TextStyle(fontSize: 22)),
                 style: ButtonStyle(
                     backgroundColor:

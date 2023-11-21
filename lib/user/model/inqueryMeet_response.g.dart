@@ -9,10 +9,10 @@ part of 'inqueryMeet_response.dart';
 InqueryMeetResponse _$InqueryMeetResponseFromJson(Map<String, dynamic> json) =>
     InqueryMeetResponse(
       A2E_LIST: (json['A2E_LIST'] as List<dynamic>)
-          .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => UserModelV2.fromJson(e as Map<String, dynamic>))
           .toList(),
       E2A_LIST: (json['E2A_LIST'] as List<dynamic>)
-          .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => UserModelV2.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

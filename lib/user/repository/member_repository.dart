@@ -8,7 +8,9 @@ import 'package:wuju/user/model/join_request.dart';
 import 'package:wuju/user/model/join_response.dart';
 import 'package:wuju/user/model/requestMeet_request.dart';
 import 'package:wuju/user/model/requestMeet_response.dart';
+import 'package:wuju/user/model/userId_request.dart';
 import 'package:wuju/user/model/user_model.dart';
+import 'package:wuju/user/model/user_modelV2.dart';
 
 import '../../common/const/data.dart';
 import '../model/humanListRequest.dart';
@@ -47,8 +49,8 @@ abstract class MemberRepository{
   );
   
   @POST('/inqueryMeet')
-  Future<InqueryMeetResponse> inqueryMeet(
-    @Body() String user_id
+  Future<Map<String,List<UserModelV2>>> inqueryMeet(
+    @Body() UserIdRequest request
   );
 
   @POST('/confirmMeet')

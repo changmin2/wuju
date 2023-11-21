@@ -149,13 +149,14 @@ class _MemberRepository implements MemberRepository {
   }
 
   @override
-  Future<InqueryMeetResponse> inqueryMeet(user_id) async {
+  Future<Map<String, List<UserModelV2>>> inqueryMeet(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = user_id;
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<InqueryMeetResponse>(Options(
+        _setStreamType<Map<String, List<UserModelV2>>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -167,7 +168,11 @@ class _MemberRepository implements MemberRepository {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = InqueryMeetResponse.fromJson(_result.data!);
+    var value = _result.data!.map((k, dynamic v) => MapEntry(
+        k,
+        (v as List)
+            .map((i) => UserModelV2.fromJson(i as Map<String, dynamic>))
+            .toList()));
     return value;
   }
 
