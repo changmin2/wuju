@@ -22,6 +22,7 @@ class _HumanListState extends ConsumerState<HumanList> {
   Future<dynamic> _future() async {
     final state = ref.read(userMeProvider) as UserModel;
     UserIdRequest request = UserIdRequest(user_id: state.user_id);
+    print('hi');
     var response = await ref.read(memberRepositoryProvider)
                 .inqueryMeet(request);
 

@@ -36,7 +36,6 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
     try{
       state = UserModelLoading();
       final resp = await authRepository.login(username: username, password: password);
-      print(resp.toString()+"ghu");
       state = resp.USER_INFO;
       return state as UserModel;
     }catch(e) {

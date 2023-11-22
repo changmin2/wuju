@@ -1,20 +1,30 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wuju/user/model/confirmMeet_request.dart';
+import 'package:wuju/user/model/user_model.dart';
 import 'package:wuju/user/model/user_modelV2.dart';
+import 'package:wuju/user/provider/user_me_provider.dart';
+import 'package:wuju/user/repository/member_repository.dart';
 
-class DetailAlien2 extends StatefulWidget {
+class DetailAlien2 extends ConsumerStatefulWidget {
   final UserModelV2 user;
   const DetailAlien2({
     required this.user,
     super.key});
 
   @override
-  State<DetailAlien2> createState() => _DetailAlien2State();
+  ConsumerState<DetailAlien2> createState() => _DetailAlien2State();
 }
 
-class _DetailAlien2State extends State<DetailAlien2> {
+class _DetailAlien2State extends ConsumerState<DetailAlien2> {
+
   @override
   Widget build(BuildContext context) {
+    final state = ref.read(userMeProvider) as UserModel;
+    var skills = widget.user.USER_SKILL.map((e) => e.skill).join(", ") ;
+    var poDays = widget.user.USER_WEEK.map((e) => e.week).join(", ");
+    print(widget.user.nick_name);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -129,11 +139,14 @@ class _DetailAlien2State extends State<DetailAlien2> {
                                         width: 20,
                                         height: 10,
                                       ),
-                                      Text(
-                                        '영어',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18),
+                                      Flexible(
+                                        child: Text(
+                                          skills,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 18),
+                                        ),
                                       ),
                                     ])
                               ])),
@@ -163,7 +176,8 @@ class _DetailAlien2State extends State<DetailAlien2> {
                               height: 10,
                             ),
                             Text(
-                              '부산시 해운대구',
+                              widget.user.address_1+" "+widget.user.address_2+" "+
+                                  widget.user.address_3,
                               style: TextStyle(fontSize: 18),
                             ),
                           ]),
@@ -187,7 +201,9 @@ class _DetailAlien2State extends State<DetailAlien2> {
                               height: 10,
                             ),
                             Text(
-                              '월수금\n18:00~21:00',
+                              poDays+"\n"
+                                  +widget.user.start_time.substring(0,2)+"시 ~ "
+                                  +widget.user.end_time.substring(0,2)+"시",
                               style: TextStyle(fontSize: 18),
                             ),
                           ]),
@@ -225,13 +241,22 @@ class _DetailAlien2State extends State<DetailAlien2> {
           width: double.infinity,
           height: 80,
           child:
-          Row(children: [
+          widget.user.decision_dv == ''? Row(children: [
             SizedBox(
               width: 150,
               height: 40,
               child:  FilledButton(
-                onPressed: () {
+                onPressed: ()  async {
+                  String path = state.user_dv == "1" ? "A2E" : "E2A";
+                  ConfirmMeetRequest request = ConfirmMeetRequest(
+                      path: path,
+                      decision_dv: 'Y',
+                      earthling_id: path == "E2A" ? state.user_id : widget.user.user_id,
+                      alien_id: path == "E2A" ? widget.user.user_id : state.user_id
+                  );
+                  await ref.read(memberRepositoryProvider).confirmMeet(request);
 
+                  Navigator.pop(context);
                 },
                 child: Text('수락', style: TextStyle(fontSize: 22)),
                 style: ButtonStyle(
@@ -251,7 +276,16 @@ class _DetailAlien2State extends State<DetailAlien2> {
             height: 40,
             child:
             FilledButton(
-              onPressed: () {},
+              onPressed: () async{
+                String path = state.user_dv == "2" ? "A2E" : "E2A";
+                ConfirmMeetRequest request = ConfirmMeetRequest(
+                    path: path,
+                    decision_dv: 'N',
+                    earthling_id: path == "E2A" ? state.user_id : widget.user.user_id,
+                    alien_id: path == "E2A" ? widget.user.user_id : state.user_id
+                );
+                await ref.read(memberRepositoryProvider).confirmMeet(request);
+              },
               child: Text('거절', style: TextStyle(fontSize: 22)),
               style: ButtonStyle(
                   backgroundColor:
@@ -260,8 +294,8 @@ class _DetailAlien2State extends State<DetailAlien2> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)))),
             )),
-          ],)
+          ],):Container()
 
-        ));
+        ) );
   }
 }

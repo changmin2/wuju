@@ -22,7 +22,6 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
 
   @override
   Widget build(BuildContext context) {
-    print('hi');
     final loginUser = ref.read(userMeProvider) as UserModel;
     var skills = widget.user.USER_SKILL.map((e) => e.skill).join(", ") ;
     var poDays = widget.user.USER_WEEK.map((e) => e.week).join(", ");
@@ -250,7 +249,7 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                             : widget.user.user_id
               );
               RequestMeetResponse response = await ref.read(memberRepositoryProvider).requestMeet(request);
-              print(response.ERROR_MSG);
+              Navigator.pop(context);
             },
             child: Text('신청하기', style: TextStyle(fontSize: 22)),
             style: ButtonStyle(

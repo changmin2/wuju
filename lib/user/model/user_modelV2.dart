@@ -16,6 +16,9 @@ class UserModelV2{
   final String end_time;
   final String path;
   final String req_time;
+  final String decision_dv;
+  final List<Skill> USER_SKILL;
+  final List<Week> USER_WEEK;
 
   UserModelV2({
     required this.user_dv,
@@ -29,9 +32,36 @@ class UserModelV2{
     required this.start_time,
     required this.end_time,
     required this.path,
-    required this.req_time
+    required this.req_time,
+    required this.USER_WEEK,
+    required this.USER_SKILL,
+    required this.decision_dv
   });
 
   factory UserModelV2.fromJson(Map<String,dynamic> json)
   => _$UserModelV2FromJson(json);
+}
+
+@JsonSerializable()
+class Skill{
+  final String skill;
+
+  Skill({
+    required this.skill
+  });
+
+  factory Skill.fromJson(Map<String,dynamic> json)
+  => _$SkillFromJson(json);
+}
+
+@JsonSerializable()
+class Week{
+  final String week;
+
+  Week({
+    required this.week
+  });
+
+  factory Week.fromJson(Map<String,dynamic> json)
+  => _$WeekFromJson(json);
 }

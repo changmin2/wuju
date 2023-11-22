@@ -19,6 +19,13 @@ UserModelV2 _$UserModelV2FromJson(Map<String, dynamic> json) => UserModelV2(
       end_time: json['end_time'] as String,
       path: json['path'] as String,
       req_time: json['req_time'] as String,
+      USER_WEEK: (json['USER_WEEK'] as List<dynamic>)
+          .map((e) => Week.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      USER_SKILL: (json['USER_SKILL'] as List<dynamic>)
+          .map((e) => Skill.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      decision_dv: json['decision_dv'] as String,
     );
 
 Map<String, dynamic> _$UserModelV2ToJson(UserModelV2 instance) =>
@@ -35,4 +42,23 @@ Map<String, dynamic> _$UserModelV2ToJson(UserModelV2 instance) =>
       'end_time': instance.end_time,
       'path': instance.path,
       'req_time': instance.req_time,
+      'decision_dv': instance.decision_dv,
+      'USER_SKILL': instance.USER_SKILL,
+      'USER_WEEK': instance.USER_WEEK,
+    };
+
+Skill _$SkillFromJson(Map<String, dynamic> json) => Skill(
+      skill: json['skill'] as String,
+    );
+
+Map<String, dynamic> _$SkillToJson(Skill instance) => <String, dynamic>{
+      'skill': instance.skill,
+    };
+
+Week _$WeekFromJson(Map<String, dynamic> json) => Week(
+      week: json['week'] as String,
+    );
+
+Map<String, dynamic> _$WeekToJson(Week instance) => <String, dynamic>{
+      'week': instance.week,
     };
