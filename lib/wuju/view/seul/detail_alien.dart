@@ -90,11 +90,16 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                                         width: 20,
                                         height: 10,
                                       ),
-                                      Text(
-                                        widget.user.nick_name,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 18),
+                                      Container(
+                                        width: 110,
+                                        child: Text(
+                                          widget.user.nick_name,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 18),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                        ),
                                       ),
                                     ]),
                                 //성별
