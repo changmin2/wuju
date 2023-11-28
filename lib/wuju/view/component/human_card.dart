@@ -43,6 +43,8 @@ class HumanCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15.0,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -54,7 +56,8 @@ class HumanCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text("☆ "+skills.toString()),
-                Text("☆ "+user.address_1+" "+user.address_2+" "+user.address_3),
+                Text("☆ "+user.address_1+" "+user.address_2+" "+user.address_3
+                ),
                 Text("☆ "+poDays.toString()+" "+user.start_time.substring(0,2)+"시~"+user.end_time.substring(0,2)+"시"),
               ],
             ),

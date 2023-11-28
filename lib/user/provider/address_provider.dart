@@ -26,6 +26,7 @@ class AddressNotifier extends ChangeNotifier{
   }
   void third(String address){
     this.address_3 = address;
+    print(this.address_1);
     notifyListeners();
   }
 

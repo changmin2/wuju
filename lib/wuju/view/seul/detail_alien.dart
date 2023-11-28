@@ -169,10 +169,15 @@ class _DetailAlienState extends ConsumerState<DetailAlien> {
                               width: 20,
                               height: 10,
                             ),
-                            Text(
-                              widget.user.address_1+" "+widget.user.address_2+" "+
-                              widget.user.address_3,
-                              style: TextStyle(fontSize: 18),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                widget.user.address_1+" "+widget.user.address_2+" "+
+                                widget.user.address_3,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontSize: 18),
+                              ),
                             ),
                           ]),
                       SizedBox(

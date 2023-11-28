@@ -19,7 +19,7 @@ class _WantMeetHumanCardState extends State<WantMeetHumanCard> {
     var skills = widget.user.USER_SKILL.map((e) => e.skill).join(", ") ;
     var poDays = widget.user.USER_WEEK.map((e) => e.week).join(", ");
     return Container(
-      height: 130,
+      height: 140,
       padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
       child: Container(
         decoration: BoxDecoration(

@@ -4108,6 +4108,7 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
       var lists = await  ref.read(memberRepositoryProvider).findPerseon(
         humanListRequest
       );
+      print(lists.toString());
       humanList = lists['USER_INFO']!.toList();
       return Future.value(humanList.length);
     }
@@ -4259,6 +4260,7 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
                   gu = null;
                   _gu = sigungu[si]![v]!.toList();
                   setState(() {
+                    ref.read(addressNotiferProvider.notifier).first(si);
                     ref.read(addressNotiferProvider.notifier).second(v.toString());
                     gun = v;
                   });
@@ -4279,6 +4281,8 @@ class _SearchListScreenState extends ConsumerState<SearchListScreen> {
               }).toList(),
               onChanged: (v) {
                 setState(() {
+                  ref.read(addressNotiferProvider.notifier).first(si);
+                  ref.read(addressNotiferProvider.notifier).second(gun);
                   ref.read(addressNotiferProvider.notifier).third(v.toString());
                   gu = v;
                 });
